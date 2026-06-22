@@ -1,0 +1,110 @@
+\documentclass[
+ aip,
+ apl,
+ amsmath,amssymb,
+ preprint,
+ floatfix,
+]{revtex4-1}
+
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+
+\graphicspath{{images/}}
+
+\newcommand{\suppfigure}[3]{%
+\begin{center}
+\includegraphics[width=\linewidth,height=0.60\textheight,keepaspectratio]{#1}
+\par\smallskip
+\refstepcounter{figure}\label{#2}
+\begin{minipage}{0.96\linewidth}
+\small\textbf{FIG. \thefigure.} #3
+\end{minipage}
+\end{center}
+}
+
+\begin{document}
+
+\title{Supplementary Material: Distributed Coherent Optical Computing via Injection-Locked Photonic Networks}
+
+\author{Shenghan Gao}
+\affiliation{Department of Electrical and Computer Engineering, Swanson School of Engineering, University of Pittsburgh, Pittsburgh, PA 15261, USA}
+\author{Kathy L\"udge}
+\affiliation{Institute of Physics, Ilmenau University of Technology, 98693 Ilmenau, Germany}
+\author{Francesco Da Ros}
+\affiliation{DTU Electro, Technical University of Denmark, 2800 Kgs. Lyngby, Denmark}
+\author{Nathan Youngblood}
+\affiliation{Department of Electrical and Computer Engineering, Swanson School of Engineering, University of Pittsburgh, Pittsburgh, PA 15261, USA}
+
+\date{\today}
+
+\begin{abstract}
+This supplementary material provides additional methodological details and supporting simulation results for the primary manuscript. We describe the empirical criteria used to define the locking-region boundary, the Fourier-domain extraction procedure used to calculate modulation responses, and additional simulations showing how the locking maps depend on linewidth enhancement factor and injected-laser operating threshold. We also include time-domain AM and PM modulation traces to illustrate the extraction of AM$\rightarrow$AM, AM$\rightarrow$PM, PM$\rightarrow$AM, and PM$\rightarrow$PM response channels and to visualize nonlinear behavior at large phase-modulation depth.
+\end{abstract}
+
+\maketitle
+
+\section{Supplementary Methods}
+
+\subsection{Defining the Locking Range}
+
+After plotting the parameter maps of $\Delta I/\bar{I}$ and $\Delta\phi$, a fairly clear transition can be observed in both cases: one side corresponds to a low-value region with comparatively steady behavior, whereas the other corresponds to a region with increased residual oscillation or phase drift. To better identify the approximate range of this transition, we tested a series of threshold values and found that the boundary in the present simulations lies roughly near 0.1 for the intensity metric and 0.1~rad for the phase metric. Accordingly, we use $\Delta I/\bar{I}\le 0.10$ and $\Delta\phi\le 0.10~\mathrm{rad}$ as empirical operational thresholds to help delineate the boundary of the locking region. For the intensity metric, $\Delta I/\bar{I}\le 0.10$ indicates residual variation below approximately 10\% of the mean intensity, which in this work generally separates approximately steady trajectories from states with more pronounced oscillation. For the phase metric, $\Delta\phi\le 0.10~\mathrm{rad}$ similarly corresponds to a small residual phase excursion over the analysis window, indicating that the field phase remains approximately stationary. These numerical values are therefore not intended as strict theoretical criteria for injection locking, but rather as empirical thresholds used to more clearly identify and outline the locking-region boundary in the present simulations. This distinction is relevant because prior studies have shown that optically injected lasers can exhibit oscillatory states with bounded phase and average-frequency entrainment near Hopf-mediated locking transitions, even when the intensity is no longer strictly steady-state~\cite{Kelleher2012PRE_BoundedPhase,Pausch2012NJP_QDInjectionDynamics}. In that sense, the present thresholds are used to define a conservative practical operating window emphasizing jointly stable amplitude and phase behavior, rather than the broadest possible notion of frequency locking.
+
+\subsection{Fourier-Domain Extraction of Modulation Response}
+
+For each operating point $(\Delta\nu, R_{\mathrm{inj}}, f_{\mathrm{mod}})$, the rate equations are first integrated through a transient interval, and the modulation response is extracted from the steady-state measurement window. The simulated injected-laser field is written as
+\begin{equation}
+E_s(t)=\mathrm{Re}\{E_s(t)\}+i\mathrm{Im}\{E_s(t)\}.
+\end{equation}
+
+The amplitude response channel is defined as the normalized field-amplitude fluctuation,
+\begin{equation}
+a_s(t)=\frac{|E_s(t)|}{\langle |E_s(t)| \rangle}-1,
+\end{equation}
+where $\langle \cdot \rangle$ denotes the time average over the measurement window. The phase response channel is obtained from the optical phase,
+\begin{equation}
+\phi_s(t)=\mathrm{unwrap}\left[\arg(E_s(t))\right].
+\end{equation}
+For the modulation-response extraction, the unwrapped phase traces are linearly detrended over the measurement window to remove any residual average phase drift before extracting the modulation component.
+
+The fundamental response amplitude at the imposed modulation frequency is extracted by projecting each input and output waveform onto the sine and cosine components at $f_{\mathrm{mod}}$. Specifically, for a waveform $y(t)$ sampled over the measurement window, the amplitude at $f_{\mathrm{mod}}$ is obtained from the quadrature components at angular frequency $2\pi f_{\mathrm{mod}}$. This procedure is equivalent to extracting the Fourier component at the imposed modulation frequency and avoids using broadband spectral features unrelated to the driven response. The resulting input and output amplitudes are denoted as $A_{\mathrm{in}}(f_{\mathrm{mod}})$ and $A_{\mathrm{out}}(f_{\mathrm{mod}})$, respectively.
+
+The response is reported in decibels as
+\begin{equation}
+H_{\mathrm{dB}}(f_{\mathrm{mod}})
+=
+20\log_{10}
+\left[
+\frac{
+A_{\mathrm{out}}(f_{\mathrm{mod}})
+}{
+A_{\mathrm{in}}(f_{\mathrm{mod}})
+}
+\right].
+\end{equation}
+
+For AM-driven injection, $A_{\mathrm{in}}$ is extracted from the normalized remote amplitude modulation. For PM-driven injection, $A_{\mathrm{in}}$ is extracted from the unwrapped and linearly detrended remote phase modulation. The same procedure is applied to the corresponding AM and PM output channels to obtain the AM$\rightarrow$AM, AM$\rightarrow$PM, PM$\rightarrow$AM, and PM$\rightarrow$PM responses.
+
+\section{Supplementary Locking-Region Maps}
+
+The main text shows representative locking maps for the two limiting cases $\alpha=0$ and $\alpha=5$. To show the continuous evolution between these two limits, Fig.~\ref{fig:supp-locking-115} provides the full set of two-dimensional maps for $\alpha=0$--5 at threshold = 1.15. The upper panel shows the relative intensity swing $\Delta I/\bar{I}$ together with the locking boundary, while the lower panel shows the corresponding binary locking-region map. These results show that the locking-region boundary evolves gradually with increasing linewidth enhancement factor, including changes in both the extent and asymmetry of the locking region.
+
+\suppfigure{combined_mask_and_2D_locking_regions_115.png}{fig:supp-locking-115}{Supplementary locking-region maps for threshold = 1.15. (a) Relative intensity swing maps for $\alpha=0$--5. The color scale shows $\Delta I/\bar{I}$, and the red contours indicate the empirical locking-region boundary defined by $\Delta I/\bar{I}\le 0.10$ and $\Delta\phi\le 0.10~\mathrm{rad}$. (b) Corresponding binary locking-region maps. Yellow regions satisfy both empirical locking criteria, while purple regions do not.}
+
+Figure~\ref{fig:supp-locking-194} shows the corresponding results for threshold = 1.94. Comparison with Fig.~\ref{fig:supp-locking-115} shows that the locking maps depend not only on $\alpha$, but also on the injected laser operating condition. In particular, changing the threshold or pump-normalized operating point modifies the locking-region extent and boundary shape as a function of injection ratio and detuning.
+
+\suppfigure{combined_mask_and_2D_locking_regions_194.png}{fig:supp-locking-194}{Supplementary locking-region maps for threshold = 1.94. (a) Relative intensity swing maps with the empirical locking-region boundary. (b) Corresponding binary locking-region maps. Compared with the threshold = 1.15 case, the locking-region boundary and accessible locking range change with the injected laser operating condition.}
+
+\section{Time-Domain Illustration of Modulation Channels}
+
+Figure~\ref{fig:supp-am-pm-time} illustrates the time-domain input and output channels used for extracting the modulation response. The traces are calculated at a representative operating point with $\alpha=5$, $R_{\mathrm{inj}}=-50~\mathrm{dB}$, zero detuning, and $f_{\mathrm{mod}}=2~\mathrm{GHz}$. After a transient interval, the last eight modulation cycles are plotted for modulation depths from 0.60 to 1.00. For AM-driven injection, the input channel is the normalized source-field amplitude modulation, and the output channels are the normalized injected-laser field amplitude and the injected-laser field phase. These channels correspond to the AM$\rightarrow$AM and AM$\rightarrow$PM responses. For PM-driven injection, the input channel is the source-field phase modulation with depth $m_\phi=0.6\pi$ to $1.0\pi$, and the output channels are again the injected-laser field amplitude and phase, corresponding to the PM$\rightarrow$AM and PM$\rightarrow$PM responses. Thus, the figure provides a direct time-domain visualization of the channels used in the Fourier-domain extraction procedure described above.
+
+This figure also provides additional detail for the nonlinear phase-modulation behavior discussed in the main text. In the small-signal regime, increasing modulation depth would primarily scale the response amplitude. However, for PM modulation depths of approximately $0.6\pi$ and above, the PM$\rightarrow$AM and PM$\rightarrow$PM traces show changes in waveform shape and relative amplitude that are not simple proportional rescalings. These time-domain traces therefore help visualize the onset of nonlinear response at large PM depth.
+
+\suppfigure{combined_AM_PM_modulation_sweep.png}{fig:supp-am-pm-time}{Time-domain AM and PM modulation responses. The first row shows AM input, AM$\rightarrow$AM, and AM$\rightarrow$PM channels. The second row shows PM input, PM$\rightarrow$AM, and PM$\rightarrow$PM channels. The traces illustrate how the four modulation response channels are defined for Fourier-domain extraction and show the nonlinear evolution of the PM-driven response at large phase-modulation depth.}
+
+\bibliography{refs}
+
+\end{document}
