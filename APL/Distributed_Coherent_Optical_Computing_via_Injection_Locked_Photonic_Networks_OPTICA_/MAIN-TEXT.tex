@@ -1,22 +1,38 @@
-\documentclass[
+\documentclass[%
  aip,
  apl,
  amsmath,amssymb,
- preprint,
+%preprint,%
+ reprint,%
+ floatfix,
 ]{revtex4-1}
 
-\usepackage{graphicx}
-\usepackage{dcolumn}
-\usepackage{bm}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx}
-\usepackage[mathlines]{lineno}
-\linenumbers\relax
+\usepackage{etoolbox}
+
+%% Apr 2021: AIP requests that the corresponding
+%% email to be moved after the affiliations
+\makeatletter
+\def\@email#1#2{%
+ \endgroup
+ \patchcmd{\titleblock@produce}
+  {\frontmatter@RRAPformat}
+  {\frontmatter@RRAPformat{\produce@RRAP{*#1\href{mailto:#2}{#2}}}\frontmatter@RRAPformat}
+  {}{}
+}%
+\makeatother
 
 \begin{document}
 
-\title{Distributed Coherent Optical Computing via Injection-Locked Photonic Networks}
+\title[Distributed coherent optical computing]{Distributed Coherent Optical Computing via Injection-Locked Photonic Networks}
 
 \author{Shenghan Gao}
 \affiliation{Department of Electrical and Computer Engineering, Swanson School of Engineering, University of Pittsburgh, Pittsburgh, PA 15261, USA}
@@ -48,12 +64,12 @@ Although photonics has traditionally enabled high-speed interconnects and data t
 
 In an ideal world, analog optical data received from a remote processor would be processed in the optical domain in real-time, thus removing energy penalties from domain conversions and latency penalties from digital buffering. While real-time processing of optical data from a remote source has been demonstrated in certain architectures \cite{Xu2021Nature_11TOPS_ConvAccelerator,Hamerly2024JLT_Netcast,Sludds2022Science_NetcastEdge}, these approaches rely on incoherent optical signaling where information from the remote source is encoded on the amplitude and wavelength of light. This limits the encoding range to positive, real-valued numbers between 0 and $+1$ (Fig.~\ref{fig:fig1}b). Differential detection can expand the output range to at most real-valued numbers ranging between $-1$ and $+1$ through various routing and balanced detection approaches \cite{Tait2017SciRep_NeuromorphicWeightBanks,Tait2014JLT_BroadcastAndWeight}.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{images/fig1.png}
+  \includegraphics[width=\textwidth]{images/fig1.png}
   \caption{\textbf{Overview of distributed computing strategies and proposed architecture. a)} Conventional digital computing approaches require multiple conversion penalties at O-E and A-D conversion boundaries when networking distributed computing nodes. \textbf{b)} Incoherent optical architectures are able to perform real-time processing of data from a remote source, but encoding is limited to positive real-valued numbers and by the number of independent channels (wavelength, mode, polarization, etc.) resulting in limited problem dimension. \textbf{c)} OIL allows a coherent copy of a remote source laser while filtering out frequency components outside the locking range. The locking range can be tuned through the injection power of the remote laser relative to the injected laser (see inset). \textbf{d)} Proposed platform for distributed, coherent optical computing. Data from a remote laser is stripped from the carrier frequency via OIL, creating a coherent, unmodulated copy of the remote laser. Subsequent modulation and interference allow real-time, coherent processing directly on the remote signal. \textbf{e)} Extending OIL concept to multiple nodes for scalable networking of distributed photonic computing chips. Each node independently locks to the optical carrier of original remote laser, enabling independent parallel computations to be performed on the original signal.}
   \label{fig:fig1}
-\end{figure}
+\end{figure*}
 
 Coherent architectures, in contrast, preserve phase information such that optical interference produces a cross term directly proportional to the product of two complex fields. This property naturally supports dot-product and multiply-accumulate primitives and enables complex-valued numbers through I/Q or amplitude-phase encoding \cite{Shen2017NatPhoton_CoherentNanophotonicDL,Zhou2025_QA_PhotonicHomodyne,RahimiKari2024Optica_CoherentPlatform,Chen2023NatPhoton_VCSEL,Zhang2021NatCommun_ComplexONC}. A fundamental challenge for such approaches is the requirement for mutual coherence, where the two interfering paths must share a phase reference that remains stable during computation. In practice, this restricts both matrix weights and input vectors to a single chip powered by a single optical source to maintain coherence. While significant progress has been made toward implementing large photonic processors on-chip (e.g., $64 \times 64$ MZI mesh arrays \cite{Hua2025Nature,Ahmed2025Nature}), photonic compute must eventually scale beyond independent single-chip processors to address real-world problems. However, resorting to conventional digital interconnects with costly O-E and A-D conversions and data buffering requirements to link such chips undermines the very efficiency and latency advantages that motivate optical computing in the first place.
 
@@ -98,12 +114,12 @@ Thus, to better understand the locking region and dynamical behavior of injectio
 
 \subsection{Laser Rate Equations and 2D Locking-Region Mapping}
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{images/fig2.png}
+  \includegraphics[width=\textwidth]{images/fig2.png}
   \caption{\textbf{Mapping locking range for various detuning and injection ratios. a)} Conceptual overview of parameter sweep and simulated analysis used to extract locking region from laser rate equations. \textbf{b)} Relative intensity swing of injected laser under varying injection ratios and detunings for $\alpha=0$ and $\alpha=5$. Boundaries where $\Delta I/\bar{I}\le 0.10$ is indicated in red. \textbf{c)} Two-dimensional locking-region maps for $\alpha=0$ and $\alpha=5$ considering both phase and amplitude stability. The locked region is identified using the steady-state criteria $\Delta I/\bar{I}\le 0.10$ and $\Delta\phi\le 0.10~\mathrm{rad}$.}
   \label{fig:fig2}
-\end{figure}
+\end{figure*}
 
 We use a Lang--Kobayashi-style semiconductor-laser rate-equation model consistent with the formulation employed by Fragkos \emph{et al.}~\cite{Fragkos2012JLT_AmpLimiter_OIL}. The injected laser is described by the slowly varying complex intracavity field $E(t)$ and carrier number $N(t)$:
 \begin{align}
@@ -129,7 +145,7 @@ where $g_0$ is the differential gain parameter, $N_0$ is the transparency carrie
 
 Internal parameters are selected to match those reported in~\cite{Fragkos2012JLT_AmpLimiter_OIL}, providing a consistent physical baseline for our simulations. Table~\ref{tab:fragkos_params} summarizes the values used in our modeling. To obtain reproducible, deterministic locking boundaries in our OIL stability maps, we adopt the following assumptions: (i) spontaneous-emission noise is not included in the locking-region scans; (ii) the field is represented in the remote laser rotating frame (implemented via real/imaginary components in the numerical solver); (iii) the injection ratio is defined as $R_{\mathrm{inj}}=P_{\mathrm{remote}}/P_0$ (in dB), where $P_0$ is the free-running steady-state intensity of the injected laser computed analytically from the same model; and (iv) the pump bias is fixed at $1.15\times$ threshold in all simulations.
 
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \centering
 \caption{Simulation parameters taken from \cite{Fragkos2012JLT_AmpLimiter_OIL}.}
 \label{tab:fragkos_params}
@@ -149,7 +165,7 @@ Injection coupling coefficient & $\kappa$ & $\kappa_{\mathrm{scale}}\cdot \gamma
 Pump bias & $R_p$ & $1.15\times R_{\mathrm{th}}$ \\
 \hline
 \end{tabular}
-\end{table}
+\end{table*}
 
 As shown in Fig.~\ref{fig:fig2}a, we map the locking region by scanning a grid over injection ratio and detuning, and integrating Eqs.~\eqref{eq:rateE}--\eqref{eq:rateN} using a fixed-step fourth-order Runge--Kutta method~\cite{Dong2024RC_QDLaser}. For each grid point $(R_{\mathrm{inj}},\Delta\nu)$, trajectories are simulated over a sufficiently long window, and only the tail segment is used to evaluate steady-state metrics. We quantify locking using two complementary measures:
 
@@ -212,12 +228,12 @@ Finally, we note that when the linewidth enhancement factor $\alpha \neq 0$, amp
 
 We first focus on the case where the remote laser and the injected laser are perfectly wavelength matched (fixed detuning at $\Delta\nu=0$) and sweep the injection ratio to quantitatively evaluate how the injected laser transmits or suppresses a modulation signal carried by the remote laser. To more clearly isolate small-signal modulation transfer associated with injection locking and to reduce the influence of sidebands and higher-order nonlinear effects induced by strong modulation, we use shallow modulation depths in the injected field: $m_a=0.1\%$ and $m_\phi=0.1\%$. For $\alpha=0$, amplitude--phase coupling is strongly suppressed and the cross-channel responses (AM$\to$PM and PM$\to$AM) are numerically negligible in this sweep; therefore, we primarily focus on the direct channels AM$\to$AM and PM$\to$PM~\cite{Lang1982InjectionLockingProperties,HenryOlssonDutta1985LockingRangeStability,Mogensen1985JQE_LockingStability_SemiconductorInjection}.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{images/fig3.png}
+  \includegraphics[width=\textwidth]{images/fig3.png}
   \caption{\textbf{Injection-ratio sweep at $\Delta\nu = 0$ with shallow modulation ($m_a = 0.1\%$, $m_\phi = 0.1\%$).} \textbf{a)} Illustration of simulation setup to extract frequency dependent transfer curves for amplitude (and phase) modulation. Panels \textbf{b)} and \textbf{d)} show AM$\to$AM transfer-function heatmaps over injection ratio ($-60$ to $-20$~dB) and $f_{\mathrm{mod}}$, with color indicating $20\log_{10}|H|$, for $\alpha = 0$ and $\alpha = 5$, respectively. \textbf{c)} AM$\to$AM and PM$\to$PM transfer function plots for $\alpha = 0$. \textbf{e)} Full transfer function plots for $\alpha = 5$, including AM$\to$AM and PM$\to$PM coupling as well as AM$\to$PM and PM$\to$AM inter-channel crosstalk. \textbf{f)} Extracted RO peak frequency versus injection ratio, showing a modest shift for $\alpha = 0$ ($\sim$2.0--2.2~GHz) and a larger shift for $\alpha = 5$ ($\sim$2.0--5~GHz).}
   \label{fig:fig3}
-\end{figure}
+\end{figure*}
 
 For each injection ratio from $-60$~dB to $-20$~dB, we compute the transfer magnitude $|H(f_{\mathrm{mod}})|$ over $f_{\mathrm{mod}}\in[0.1,10]$~GHz using 100 frequency points. Fig.~\ref{fig:fig3}c shows the AM$\to$AM and PM$\to$PM transfer functions for $\alpha=0$, while Fig.~\ref{fig:fig3}e shows the corresponding results for $\alpha=5$ and additionally includes the cross channels AM$\to$PM and PM$\to$AM. Across all six panels, the magnitude of the transfer function exhibits an overall increasing trend with injection ratio, indicating that under stronger injection the injected laser more readily transmits the remote source modulation.
 
@@ -247,12 +263,12 @@ Fig.~\ref{fig:fig4}b-c show detuning sweeps at $-20$~dB for $\alpha=0$ and $\alp
 From a system-design perspective, these observations highlight a trade-off: a larger injection ratio can increase the detuning margin, but may also introduce stronger dynamical effects and more pronounced AM/PM mixing, whereas a smaller injection ratio reduces the locking margin but can provide a more predictable operating window where the injected laser is still carrier-locked but experiences reduced nonlinear effects due to modulation.
 This motivates the subsequent sweeps in the low injection ratio regime which further quantify how modulation depth affects the injected laser's purity and stability.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{images/fig4.png}
+  \includegraphics[width=\textwidth]{images/fig4.png}
   \caption{\textbf{Detuning-resolved transfer-function heatmaps under modulated injection ($m_a=25\%$ and $m_\phi=25\%$). a)} Conceptual overview of simulation model. Panels \textbf{b--c)} correspond to injection ratio $-20.0$~dB for $\alpha=0$ and $\alpha=5$, and panels \textbf{d--e)} correspond to injection ratio $-50.0$~dB for $\alpha=0$ and $\alpha=5$. Because the inferred locking window is much narrower at $-50.0$~dB, panels \textbf{d--e)} zoom the detuning axis to $\pm 1.0$~GHz; the full $\pm 10.0$~GHz range is shown as an inset in the upper-right corner of each panel. The red dashed lines overlay the locking boundaries extracted from the 2D locking maps in Sec.~II: for $-20.0$~dB, $\alpha=0$ gives $-2.3$ to $+2.3$~GHz and $\alpha=5$ gives $-7.2$ to $+0.8$~GHz; for $-50.0$~dB, $\alpha=0$ gives $-75.0$ to $+75.0$~MHz and $\alpha=5$ gives $-375.0$ to $+375.0$~MHz. Overall, higher injection ratio provides a wider detuning margin but more readily exhibits stronger dynamical structure, whereas lower injection ratio yields a narrower but typically smoother and more stable operating window with reduced modulation remnants.}
   \label{fig:fig4}
-\end{figure}
+\end{figure*}
 
 \subsection{Modulation-Depth Sweep: Robustness at Low Injection Ratio}
 
@@ -263,12 +279,12 @@ Panels (a) and (b) show the AM$\to$AM and PM$\to$PM transfer functions for $\alp
 A clear observation is that the AM$\to$AM response is largely insensitive to modulation depth: the curves nearly overlap across depths for both $\alpha=0$ and $\alpha=5$, suggesting that under low injection the amplitude-related transfer remains highly consistent over a wide range of modulation depths.
 In contrast, the PM$\to$PM channel exhibits a more systematic depth dependence: as modulation depth increases, the transfer magnitude decreases gradually, forming a distinct separation between curves across the band.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{images/fig5.png}
+  \includegraphics[width=\textwidth]{images/fig5.png}
   \caption{\textbf{Modulation-depth sweep at injection ratio $-50$~dB and $\Delta\nu=0$. a)} $\alpha=0$: AM$\to$AM and PM$\to$PM transfer functions for multiple modulation depths. \textbf{b)} $\alpha=5$: AM$\to$AM, PM$\to$PM, and PM-driven cross-channel responses, where localized distortion can appear near the RO neighborhood at high modulation depth (red dashed guide). \textbf{c)} $\alpha=0$, $f_{\mathrm{mod}}=2$~GHz: PM$\to$PM phase waveform in time domain for multiple depths. \textbf{d)} $\alpha=5$, $f_{\mathrm{mod}}=2$~GHz: PM$\to$PM phase waveform showing distortion at high PM depth (notably $\sim$80\%). \textbf{e)} $\alpha=5$, $f_{\mathrm{mod}}=2$~GHz: PM$\to$AM time-domain waveform showing a similar high-depth distortion trend.}
   \label{fig:fig5}
-\end{figure}
+\end{figure*}
 
 Beyond these global trends, distortion in the transfer functions becomes visible near the RO-enhanced region when $\alpha=5$ and the PM depth is large (most noticeably for the highest-depth traces, e.g., $\gtrsim 80\%$). In Fig.~\ref{fig:fig5}b, the PM$\to$PM curves develop notable non-monotonic behavior around the RO frequency (marked by the red dashed guide), deviating from an otherwise smooth roll-off. Similar behavior is also observed in the PM$\to$AM crosstalk. 
 This behavior also provides a practical guideline for remote coherent carrier regeneration. The RO-enhanced region consistently appears near 2 GHz, and the onset of waveform distortion at high modulation depth (most noticeably near $80\%$ PM depth) is likewise concentrated within this same frequency range. This indicates that the RO-enhanced spectral region is more susceptible to residual modulation transfer and nonlinear distortion. Therefore, to more effectively suppress unwanted remote modulation sidebands in the injected laser output, it is preferable to place the modulation frequency outside the RO-sensitive band and operate in the lower-transfer region beyond the RO frequency. Such operating conditions are more likely to support cleaner carrier regeneration for downstream coherent interference.
@@ -290,13 +306,13 @@ Fig.~\ref{fig:fig6}a illustrates the simulated system where a remote laser modul
 
 To evaluate symbol-level coherent readout under injection locking, we use a real-valued modulation format in which the discrete symbol stream is arranged as antipodal symbol pairs. For each randomly selected symbol magnitude $a$, two consecutive symbols are assigned as $+a$ and $-a$. To encode $-a$, a $\pi$ phase shift is applied to the signal during the duration of the negative symbol (not shown in Fig.~\ref{fig:fig6}a). The main purpose of this scheme, which shares the DC-balanced property of multilevel Manchester-type encoding~\cite{Chung2012EMC_PAMn}, is to suppress the low-frequency and DC content of the modulation waveform while maintaining a constant average injected power for locking stability (i.e., the signal maintains a constant injection ratio). Note that while we are multiplying real-valued numbers in this case, maintaining phase coherence between the remote and local lasers is necessary to ensure accurate computation of the dot-product \cite{Hamerly2019PRX_PhotoelectricMultiplication}.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{images/fig6.png}
+  \includegraphics[width=\textwidth]{images/fig6.png}
   \caption{\textbf{Numerical evaluation of distributed coherent processing through photoelectric multiply-accumulate operations. a)} Conceptual illustration of simulated system used to evaluate distributed, coherent optical vector-vector multiplication. Plot shows injected laser field settling dynamics after start of OIL with a CW signal (0--10~ns, unmodulated). \textbf{b)} Plots of the remote laser modulated with the first input symbol sequence "data 1" (top panel) and the injected-laser signal after OIL and subsequent remodulation with "data 2" (bottom panel), for injection ratios of $-30$, $-40$, and $-50$~dB. The ideal case is included as a reference (dashed black line), corresponding to a perfectly coherent local baseline without remote injection.
 \textbf{c)} FFT of the remote and injected laser fields from \textbf{b)}, showing reduced modulation-related spectral components at lower injection ratios. \textbf{d)} Ratio of the FFT results in \textbf{c)} for frequencies between 0 and 15 GHz. The extracted transfer function from the broadband modulation in \textbf{b)} exhibits an RO peak near $\sim$2~GHz and lower residual modulation at lower injection ratios. \textbf{e)} Modeled BPD differential output from interference and differential detection. \textbf{f)} Temporal accumulation of the signal in \textbf{e)} where lower injection ratios yield results closer to the ideal baseline.}
   \label{fig:fig6}
-\end{figure}
+\end{figure*}
 
 After symbol generation at 5 Gbaud, the discrete sequences are converted into continuous-time drive signals by zero-order hold and then filtered by a 20~GHz low-pass filter, producing band-limited real-symbol waveforms for both paths. In the remote branch (Path~A), the filtered waveform is applied on top of a DC optical carrier. In the injected branch (Path~B), the injected-laser field is first obtained from the rate-equation dynamics, and the filtered Path~B waveform is then used to modulate this field. To isolate the useful symbol-driven response from initial locking transients, the first 200 symbols are set to zero, corresponding to a pure DC segment from 0 to 20~ns. The following 200 symbols, spanning 20 to 40~ns, form the active modulation region. This arrangement allows the injected laser to settle before symbol modulation is applied, so that the subsequent time-domain interference and modeled balanced-detection results can be interpreted primarily as symbol-driven behavior rather than startup dynamics. We note that while our symbol rate is relatively modest for this analysis, much higher rates are further from the RO frequency and are expected to be less affected by the nonlinearities observed in Fig.~\ref{fig:fig5}.
 
