@@ -1,4 +1,4 @@
-\documentclass[%
+将\documentclass[%
  aip,
  apl,
  amsmath,amssymb,
@@ -17,7 +17,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx}
 \usepackage{etoolbox}
-
+\usepackage{xcolor}
 %% Apr 2021: AIP requests that the corresponding
 %% email to be moved after the affiliations
 \makeatletter
@@ -121,18 +121,41 @@ Thus, to better understand the locking region and dynamical behavior of injectio
   \label{fig:fig2}
 \end{figure*}
 
-We use a Lang--Kobayashi-style semiconductor-laser rate-equation model consistent with the formulation employed by Fragkos \emph{et al.}~\cite{Fragkos2012JLT_AmpLimiter_OIL}. The injected laser is described by the slowly varying complex intracavity field $E(t)$ and carrier number $N(t)$:
+We use a Lang--Kobayashi-style semiconductor-laser rate-equation model consistent with the formulation employed by Fragkos \emph{et al.}~\cite{Fragkos2012JLT_AmpLimiter_OIL}. The injected laser is described by the slowly varying complex intracavity field $E(t)$ and carrier number $N(t)$. \textcolor{red}{The field envelopes are expressed in a frame
+rotating at the remote-laser carrier frequency:}
 \begin{align}
-\frac{dE}{dt} &=
-\frac{1}{2}\left(1+i\alpha\right)G\!\left(N,|E|^2\right)E
-+ \kappa\,E_{\mathrm{inj}}(t),
+\frac{dE}{dt}
+&=
+\left[
+\frac{1}{2}(1+i\alpha)G\!\left(N,|E|^2\right)
+\textcolor{red}{-i\Delta\omega}
+\right]E
++\kappa E_{\mathrm{inj}}(t),
 \label{eq:rateE}\\
-\frac{dN}{dt} &=
-R_p - \frac{N}{\tau_n}
-- g\!\left(N,|E|^2\right)|E|^2,
+\frac{dN}{dt}
+&=
+R_p-\frac{N}{\tau_n}
+-g\!\left(N,|E|^2\right)|E|^2,
 \label{eq:rateN}
 \end{align}
-where $\alpha$ is the linewidth enhancement factor, $\tau_n$ is the carrier lifetime, $R_p$ is the pump (bias) term, and $\kappa$ is the injection coupling coefficient. We model the saturated gain as:
+
+where $\alpha$ is the linewidth enhancement factor, $\tau_n$ is the carrier lifetime, $R_p$ is the pump (bias) term, and $\kappa$ is the injection coupling coefficient. {\color{red}
+Here, the detuning is defined as
+\[
+\Delta\nu=\nu_{\mathrm{remote}}-\nu_{\mathrm{injected},0},
+\qquad
+\Delta\omega=2\pi\Delta\nu,
+\]
+where $\nu_{\mathrm{injected},0}$ is the free-running frequency
+of the injected laser. Positive detuning means that the
+remote-laser frequency is higher than the free-running
+injected-laser frequency. In the remote-laser rotating frame,
+this frequency offset enters the field dynamics through
+$-i\Delta\omega E$ in Eq.~\eqref{eq:rateE}.
+We report $\Delta\nu$ in Hz (or GHz in the figures) and
+use $\Delta\omega$ in $\mathrm{rad\,s^{-1}}$ in the
+rate equations.
+} We model the saturated gain as:
 \begin{align}
 g\!\left(N,|E|^2\right)
 &=\frac{g_0\left(N-N_0\right)}{1+s|E|^2},
@@ -143,7 +166,16 @@ G\!\left(N,|E|^2\right)
 \end{align}
 where $g_0$ is the differential gain parameter, $N_0$ is the transparency carrier number, $s$ is the gain saturation factor, and $\tau_s$ is the photon lifetime. The injection term $E_{\mathrm{inj}}(t)$ represents a fraction of the remote-laser field coupled into the injected laser. In this section, we consider an unmodulated injection field to map the carrier-level locking region. Modulation-dependent effects are analyzed in later sections.
 
-Internal parameters are selected to match those reported in~\cite{Fragkos2012JLT_AmpLimiter_OIL}, providing a consistent physical baseline for our simulations. Table~\ref{tab:fragkos_params} summarizes the values used in our modeling. To obtain reproducible, deterministic locking boundaries in our OIL stability maps, we adopt the following assumptions: (i) spontaneous-emission noise is not included in the locking-region scans; (ii) the field is represented in the remote laser rotating frame (implemented via real/imaginary components in the numerical solver); (iii) the injection ratio is defined as $R_{\mathrm{inj}}=P_{\mathrm{remote}}/P_0$ (in dB), where $P_0$ is the free-running steady-state intensity of the injected laser computed analytically from the same model; and (iv) the pump bias is fixed at $1.15\times$ threshold in all simulations.
+Internal parameters are selected to match those reported in~\cite{Fragkos2012JLT_AmpLimiter_OIL}, providing a consistent physical baseline for our simulations. Table~\ref{tab:fragkos_params} summarizes the values used in our modeling. To obtain reproducible, deterministic locking boundaries in our OIL stability maps, we adopt the following assumptions: (i) spontaneous-emission noise is not included in the locking-region scans; (ii) the field is represented in the remote laser rotating frame (implemented via real/imaginary components in the numerical solver); (iii) the injection ratio is defined as $R_{\mathrm{inj}}=P_{\mathrm{remote}}/P_0$ (in dB), where $P_0$ is the free-running steady-state intensity of the injected laser computed analytically from the same model; and (iv) the pump bias is fixed at $1.15\times$ threshold in all simulations. {\color{red}
+The injection coupling coefficient is parameterized as
+$\kappa=\kappa_{\mathrm{scale}}\gamma_c$, where
+$\kappa_{\mathrm{scale}}$ is a dimensionless scaling factor
+set to unity in the locking-region scans.
+Here, $\gamma_c=1/t_{\mathrm{rt}}$ is the inverse cavity
+round-trip time, distinct from the photon decay rate
+$1/\tau_s$. Both $\gamma_c$ and $\kappa$ have units of
+$\mathrm{s}^{-1}$.
+}
 
 \begin{table*}[htbp]
 \centering
@@ -163,11 +195,51 @@ Photon lifetime & $\tau_s$ & $3.2$ ps \\
 Cavity decay rate & $\gamma_c$ & $1/t_{\mathrm{rt}}$ \\
 Injection coupling coefficient & $\kappa$ & $\kappa_{\mathrm{scale}}\cdot \gamma_c$ \\
 Pump bias & $R_p$ & $1.15\times R_{\mathrm{th}}$ \\
+
 \hline
 \end{tabular}
 \end{table*}
 
 As shown in Fig.~\ref{fig:fig2}a, we map the locking region by scanning a grid over injection ratio and detuning, and integrating Eqs.~\eqref{eq:rateE}--\eqref{eq:rateN} using a fixed-step fourth-order Runge--Kutta method~\cite{Dong2024RC_QDLaser}. For each grid point $(R_{\mathrm{inj}},\Delta\nu)$, trajectories are simulated over a sufficiently long window, and only the tail segment is used to evaluate steady-state metrics. We quantify locking using two complementary measures:
+
+{\color{red}
+For the unmodulated locking-region scans, the injection
+ratio is sampled from $-60$ to $0$~dB in $1$~dB steps,
+and the detuning $\Delta\nu$ is sampled from $-30$ to
+$+30$~GHz in $25$~MHz steps.
+Each parameter point is initialized independently with
+$E(0)=0$ and $N(0)=N_{\mathrm{th}}$, where
+\[
+N_{\mathrm{th}}
+=
+N_0+\frac{1}{g_0\tau_s}.
+\]
+The pump rate is fixed at
+$R_p=1.15N_{\mathrm{th}}/\tau_n$.
+We use a time step of
+$\Delta t=2\times10^{-13}$~s and perform
+$90{,}000$ integration steps, corresponding to a total
+integration time of $18$~ns.
+The intensity and phase metrics are evaluated using
+only the final $3{,}000$ samples, spanning approximately
+$0.6$~ns, after excluding the preceding approximately
+$17.4$~ns.
+
+The injected remote field is prescribed as
+$E_{\mathrm{inj}}(t)=A_{\mathrm{inj}}e^{i\phi_0}$,
+with $\phi_0=0$ and
+\[
+A_{\mathrm{inj}}
+=
+A_{\mathrm{fr}}10^{R_{\mathrm{inj,dB}}/20},
+\]
+where $A_{\mathrm{fr}}$ is the free-running field
+amplitude calculated analytically from the same model,
+and $R_{\mathrm{inj,dB}}$ is the injection ratio in dB.
+No stochastic noise terms are included in these scans.
+}
+
+We quantify locking using two complementary measures:
 
 \begin{description}
     \item[(i) relative intensity swing:] 
