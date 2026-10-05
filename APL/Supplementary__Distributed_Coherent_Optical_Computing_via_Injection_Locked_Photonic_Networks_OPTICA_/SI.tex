@@ -68,7 +68,7 @@ This supplementary material provides additional methodological details and suppo
 
 After plotting the parameter maps of $\Delta I/\bar{I}$ and $\Delta\phi$, a fairly clear transition can be observed in both cases: one side corresponds to a low-value region with comparatively steady behavior, whereas the other corresponds to a region with increased residual oscillation or phase drift. To better identify the approximate range of this transition, we tested a series of threshold values and found that the boundary in the present simulations lies roughly near 0.1 for the intensity metric and 0.1~rad for the phase metric. Accordingly, we use $\Delta I/\bar{I}\le 0.10$ and $\Delta\phi\le 0.10~\mathrm{rad}$ as empirical operational thresholds to help delineate the boundary of the locking region. For the intensity metric, $\Delta I/\bar{I}\le 0.10$ indicates residual variation below approximately 10\% of the mean intensity, which in this work generally separates approximately steady trajectories from states with more pronounced oscillation. For the phase metric, $\Delta\phi\le 0.10~\mathrm{rad}$ similarly corresponds to a small residual phase excursion over the analysis window, indicating that the field phase remains approximately stationary. These numerical values are therefore not intended as strict theoretical criteria for injection locking, but rather as empirical thresholds used to more clearly identify and outline the locking-region boundary in the present simulations. This distinction is relevant because prior studies have shown that optically injected lasers can exhibit oscillatory states with bounded phase and average-frequency entrainment near Hopf-mediated locking transitions, even when the intensity is no longer strictly steady-state~\cite{Kelleher2012PRE_BoundedPhase,Pausch2012NJP_QDInjectionDynamics}. In that sense, the present thresholds are used to define a conservative practical operating window emphasizing jointly stable amplitude and phase behavior, rather than the broadest possible notion of frequency locking.
 \textcolor{red}{The cutoffs describe the visible dark--bright transition, not a rigorous stability boundary or a fraction of the color-bar range. Reducing both metric cutoffs from 0.10 to 0.01 changes the joint-region area by only 0.23\% for $\alpha=0$ and 0.96\% for $\alpha=5$ (Fig.~\ref{fig:review-threshold}). The same trajectories and finite observation window are used throughout.}
-\textcolor{red}{The archived unmodulated maps used for this cutoff comparison span $-60$ to $0$~dB in 1~dB steps and $-30$ to $30$~GHz in 100~MHz steps. The corresponding rate-equation implementation initializes each point with $E(0)=0$ and $N(0)=N_{\mathrm{th}}=N_0+1/(g_0\tau_s)$, with $R_p=1.15N_{\mathrm{th}}/\tau_n$ and $\kappa_{\mathrm{scale}}=1$. Fourth-order Runge--Kutta integration uses a 0.2~ps step for 90,000 steps (18~ns); the final 3,000 samples (0.6~ns) provide the intensity and unwrapped-phase metrics. The constant injected field is $E_{\mathrm{inj}}=A_{\mathrm{fr}}10^{R_{\mathrm{inj,dB}}/20}$, where $A_{\mathrm{fr}}$ is the model free-running amplitude. No stochastic noise is included in these maps.}
+\textcolor{red}{The archived unmodulated maps used for this cutoff comparison span $-60$ to $0$~dB in 1~dB steps and $-30$ to $30$~GHz in 100~MHz steps. The corresponding rate-equation implementation initializes each point with $E(0)=0$ and $N(0)=N_{\mathrm{th}}=N_0+1/(g_0\tau_s)$, with $R_p=1.15N_{\mathrm{th}}/\tau_n$ and $\kappa_{\mathrm{scale}}=1$. Fourth-order Runge--Kutta integration uses a 0.2~ps step for 90,000 steps (18~ns); the final 3,000 samples (0.6~ns) provide the intensity and unwrapped-phase metrics. The constant injected field is $E_{\mathrm{inj}}=A_{\mathrm{fr}}10^{R_{\mathrm{inj,dB}}/20}$, where $A_{\mathrm{fr}}$ is the model free-running amplitude.}
 
 \subsection{Fourier-Domain Extraction of Modulation Response}
 
@@ -209,7 +209,7 @@ Thus $S$ is the RMS scale of all 1000 ideal endpoints, not an error. Each signed
 r_{\mathrm P}(L)&=\operatorname{corr}_q[A_{\mathrm{OIL},q}(L),A_{\mathrm{ideal},q}(L)].
 \end{aligned}
 \end{equation}
-NRMSE is displayed as a percentage. Pearson correlation measures covariation across input pairs and must be interpreted together with NRMSE: high correlation alone does not imply small numerical error. These are deterministic calculations without detector or laser noise.}
+NRMSE is displayed as a percentage. Pearson correlation measures covariation across input pairs and must be interpreted together with NRMSE: high correlation alone does not imply small numerical error.}
 
 \textcolor{red}{The dependence on $\alpha$ reflects coupled amplitude/phase dynamics and coherent readout. Writing the calibrated no-reflection field as $E_{\mathrm{injected}}/\langle E_{\mathrm{injected}}\rangle_{\mathrm{CW}}=(1+a_\alpha)e^{i\phi_\alpha}$ gives
 \begin{equation}
@@ -232,33 +232,6 @@ Here $a_\alpha$ and $\phi_\alpha$ are residual field-amplitude and phase fluctua
 \includegraphics[width=\linewidth]{images/review_length_metrics_1000.pdf}
 \caption{\textcolor{red}{\textbf{Accumulation accuracy versus prefix length for 1000 input pairs.} \textbf{a)} RMSE, \textbf{b)} NRMSE (\%), and \textbf{c)} Pearson correlation for $L=1$--1024, using the inputs of Fig.~\ref{fig:review-statistics}. Columns: $-50$, $-40$, $-30$~dB; orange/green/red: $\alpha=0/2/5$; solid/dashed: $R_f=0/0.30$. Subplots have independent vertical ranges. RMSE axes are linear at $-50$ and $-40$~dB and logarithmic at $-30$~dB; NRMSE axes are logarithmic. In (c), logarithmically spaced ticks show $1-r_{\mathrm P}$ under a $1-$ prefix. The reference uses identical filtered inputs and ideal coherent carriers.}}
 \label{fig:review-statistics-metrics}
-\end{figure}
-\endgroup
-
-\clearpage
-\subsection{\textcolor{red}{Output Phase Control and Frequency-Drift Sensitivity}}
-\textcolor{red}{Figure~\ref{fig:review-phase} evaluates a proportional--integral--derivative (PID) phase controller placed after local remodulation and before interference. The rate equations retain the time-dependent detuning term $-i2\pi\Delta\nu(t)E_{\mathrm{injected}}$. For a common received phase $\phi_c$ and a differential-path perturbation $\phi_d$, the fields are
-\[
-\begin{aligned}
-E_{\mathrm{remote}}^{(\mathrm{modulated})}&=x e^{i\phi_c},\\
-E_{\mathrm{injected}}^{(\mathrm{modulated})}&=\frac{E_{\mathrm{injected}}}{\langle E_{\mathrm{injected}}\rangle_{\mathrm{CW}}}\,y e^{i(\phi_d+u_{\mathrm{PID}})}.
-\end{aligned}
-\]
-with the same fixed CW-field normalization $\langle E_{\mathrm{injected}}\rangle_{\mathrm{CW}}$ and differential readout defined above. The controller changes only the output phase; it does not actuate the laser frequency. These calculations use $\alpha=0$, $R_f=0$, and injection ratios of $-50$, $-40$, and $-30$~dB.}
-
-\textcolor{red}{The auxiliary phase discriminator is idealized: it removes the data modulation and averages the carrier coherence over 5~ns, followed by a 10~MHz low-pass response; independent 3~mrad RMS readout noise is added before this filter. The PID updates every 5~ns and drives a first-order 20~MHz phase actuator with an additional 10~ns command delay and a $\pm4\pi$ range. For design crossover parameters $f_c=0.2,1,2$~MHz, the gains are $K_p=0.15$, $K_i=2\pi f_c\sqrt{1-K_p^2}$, and $K_d=0.015/(2\pi f_c)$, with 10~MHz derivative filtering and anti-windup. These are illustrative controller parameters, not measured hardware bandwidths. An experimental implementation requires a suitable reference or pilot discriminator; low-pass filtering the computational BPD signal alone does not necessarily separate phase drift from data.}
-
-\textcolor{red}{The original 10~Gbaud, 100\%-depth, Gaussian-filtered encoding is retained at 64 samples per symbol. Following the 20~ns CW preamble, the laser and controller evolve continuously over 256 consecutive 1024-symbol windows. The final-result NRMSE uses the 207 windows centered after 5~$\mu$s, with identical inputs for every comparison; these are consecutive windows of one input pair, not the 1000 independent pairs of Figs.~\ref{fig:review-statistics} and \ref{fig:review-statistics-metrics}. The ideal reference remains $D_{\mathrm{ideal}}=2xy$ for the same filtered waveforms.}
-
-\textcolor{red}{At $-50$~dB, the $f_c=1$~MHz controller reduces final-result NRMSE from 22.26\% to 1.96\% for the slower phase perturbations, but a further 20~MHz disturbance leaves 8.53\% error. For the 30~MHz-amplitude detuning variation, NRMSE decreases from 5.97\% to 0.53\%. These synthetic perturbations do not represent measured fiber noise. Output PID cannot restore cavity locking outside the locking interval: current/temperature feedback is separately required,\cite{Liu2015HomodyneOIL} along with controlled polarization and path matching for output phase stabilization.\cite{Liu2014ModulatorFreeQAM}}
-
-\begingroup
-\renewcommand{\baselinestretch}{1}\selectfont
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth]{images/review_phase.pdf}
-\caption{\textcolor{red}{\textbf{Post-remodulation phase PID under prescribed phase and frequency perturbations.} \textbf{a--c)} Phase error of the 5~ns-averaged carrier coherence at $-50$~dB injection, with PID off (gray) and on at $f_c=1$~MHz (blue). \textbf{a)} Common phase $0.3\sin(2\pi\,0.5~\mathrm{MHz}\,t)$ and differential phase $0.8\sin(2\pi\,0.2~\mathrm{MHz}\,t)+0.25\sin(2\pi\,0.7~\mathrm{MHz}\,t)$, in radians. \textbf{b)} The same perturbations with an additional 0.4-rad, 20~MHz differential phase. \textbf{c)} Relative detuning $\Delta\nu=30~\mathrm{MHz}\sin(2\pi\,0.2~\mathrm{MHz}\,t)$. Perturbations ramp on from 0.5 to 0.7~$\mu$s. \textbf{d--f)} Corresponding final accumulated-result NRMSE for 1024-symbol windows versus injection ratio, comparing PID off and $f_c=0.2,1,2$~MHz; vertical scales are logarithmic. All panels use $\alpha=0$, no output reflection, and sample-resolved differential detection and accumulation. Controller labels specify a design parameter, not a measured closed-loop bandwidth.}}
-\label{fig:review-phase}
 \end{figure}
 \endgroup
 
