@@ -143,7 +143,7 @@ R_p-\frac{N}{\tau_n}
 \end{align}
 
 where $\alpha$ is the linewidth enhancement factor, $\tau_n$ is the carrier lifetime, $R_p$ is the pump (bias) term, and $\kappa$ is the injection coupling coefficient.
-\textcolor{red}{The field is expressed in the remote-carrier rotating frame, with $\Delta\omega=2\pi(\nu_{\mathrm{remote}}-\nu_0)$ in $\mathrm{rad\,s^{-1}}$; $\nu_0$ is the free-running optical frequency of the injected laser in the absence of external optical injection. The figures report $\Delta\nu=\nu_{\mathrm{remote}}-\nu_0=\Delta\omega/(2\pi)$.}  We model the saturated gain as:
+\textcolor{red}{The term $-i\Delta\omega E$ describes detuning-induced phase evolution in the remote-carrier rotating frame, where $i^2=-1$ and $\Delta\omega=2\pi(\nu_{\mathrm{remote}}-\nu_0)$ is the angular-frequency detuning in $\mathrm{rad\,s^{-1}}$. Here $\nu_{\mathrm{remote}}$ is the remote-laser optical frequency and $\nu_0$ is the free-running optical frequency of the injected laser without external injection.}  We model the saturated gain as:
 \begin{align}
 g\!\left(N,|E|^2\right)
 &=\frac{g_0\left(N-N_0\right)}{1+s|E|^2},
@@ -155,7 +155,7 @@ G\!\left(N,|E|^2\right)
 where $g_0$ is the differential gain parameter, $N_0$ is the transparency carrier number, $s$ is the gain saturation factor, and $\tau_s$ is the photon lifetime. The injection term $E_{\mathrm{inj}}(t)$ represents a fraction of the remote-laser field coupled into the injected laser. In this section, we consider an unmodulated injection field to map the carrier-level locking region. Modulation-dependent effects are analyzed in later sections.
 
 Internal parameters are selected to match those reported in~\cite{Fragkos2012JLT_AmpLimiter_OIL}, providing a consistent physical baseline for our simulations. Table~\ref{tab:fragkos_params} summarizes the values used in our modeling. To obtain reproducible, deterministic locking boundaries in our OIL stability maps, we adopt the following assumptions: (i) spontaneous-emission noise is not included in the locking-region scans; (ii) the field is represented in the remote laser rotating frame (implemented via real/imaginary components in the numerical solver); (iii) the injection ratio is defined as $R_{\mathrm{inj}}=P_{\mathrm{remote}}/P_0$ (in dB), where $P_0$ is the free-running steady-state intensity of the injected laser computed analytically from the same model; and (iv) the pump bias is fixed at $1.15\times$ threshold in all simulations.
-\textcolor{red}{The dimensionless factor $\kappa_{\mathrm{scale}}$ scales the injection coupling rate, $\kappa=\kappa_{\mathrm{scale}}\gamma_c$, where $\gamma_c=1/t_{\mathrm{rt}}$ is the inverse cavity round-trip time. Its value depends on the specific injected laser and optical coupling configuration used experimentally. In the present simulations, we set $\kappa_{\mathrm{scale}}=1$. The linear injection ratio is $R_{\mathrm{inj}}=P_{\mathrm{remote}}/P_0$, with $R_{\mathrm{inj,dB}}=10\log_{10}R_{\mathrm{inj}}$; remote power refers to the field entering the injection term. Numerical settings are given in Supplementary Sec.~I.}
+\textcolor{red}{The dimensionless factor $\kappa_{\mathrm{scale}}$ scales the injection coupling rate, $\kappa=\kappa_{\mathrm{scale}}\gamma_c$, where $\gamma_c=1/t_{\mathrm{rt}}$ is the inverse cavity round-trip time. Its value depends on the specific injected laser and optical coupling configuration used experimentally. In the present simulations, we set $\kappa_{\mathrm{scale}}=1$.}
 
 \begin{table*}[htbp]
 \centering
@@ -271,6 +271,7 @@ We next sweep the frequency detuning between the remote laser and the injected l
 \begin{equation}
 \Delta\nu = \nu_{\mathrm{remote}} - \textcolor{red}{\nu_0}.
 \end{equation}
+\textcolor{red}{Thus, $\Delta\nu$ is the optical-frequency difference between the remote laser and the free-running injected laser; $\nu_0$ denotes the latter's frequency before optical injection, and $\Delta\nu=\Delta\omega/(2\pi)$.}
 
 In Fig.~\ref{fig:fig4}a, the injected field is driven with a relatively large modulation depth ($m_a=25\%$ and $m_\phi=25\%$), and the detuning is swept for two representative injection ratios, $-20$~dB and $-50$~dB. For each detuning point, we compute $|H(f_{\text{mod}})|$ over $f_{\text{mod}}\in[0.1,10]\ \text{GHz}$ and visualize the results as detuning-resolved pseudo-color maps with modulation frequency on the horizontal axis and detuning on the vertical axis. This representation effectively stacks transfer functions at different detunings into a single 2D map, which facilitates identifying: (i) a detuning range where the injected laser response remains bounded and repeatable, and (ii) detuning-dependent dynamical features such as RO-related enhancement and increased sensitivity to modulation frequency~\cite{Lau2008JQE_FreqRespEnh_OIL,Lau2008JLT_MasterModulation_OIL_BWEnhancement}.
 

@@ -160,9 +160,9 @@ This figure also provides additional detail for the nonlinear phase-modulation b
 \textcolor{red}{The Z-cut intensity EOM used experimentally (Thorlabs LNLVL-IM-Z) can introduce additional PM through residual chirp~\cite{ThorlabsLNLVLChirp}. To account for this effect, the modulated simulation uses
 \begin{equation}
 E_{\mathrm{inj}}(t)=A_{\mathrm{inj},0}[1+0.1\sin(2\pi f_{\mathrm{mod}}t)]
-\exp[i\,0.131174\sin(2\pi f_{\mathrm{mod}}t)].
+\exp[i\,0.119786\sin(2\pi f_{\mathrm{mod}}t)].
 \end{equation}
-The AM depth is a field-amplitude fraction; the added peak PM is 0.131174~rad ($7.516^\circ$), in phase with the AM drive. This fitted value places the minimum at $-0.22$~GHz detuning for a 4~GHz drive and retains a nearby minimum over 1--5~GHz. It is an effective model parameter, not an independent measurement of the EOM chirp. The resulting map reproduces the negative-detuning low-response region, supporting qualitative agreement with the experiment.}
+The AM depth is a field-amplitude fraction; the added peak PM is 0.119786~rad ($6.863^\circ$), in phase with the AM drive. This fitted value places the minimum at $-0.20$~GHz detuning for a 4~GHz drive and retains a nearby minimum over 1--5~GHz. It is an effective model parameter, not an independent measurement of the EOM chirp. The resulting map reproduces the negative-detuning low-response region, supporting qualitative agreement with the experiment.}
 
 \textcolor{red}{Simulations use $\alpha=2$ and normalized pump setting 1.944, representing injected-laser output near 0~dBm. The external experimental ratio of $-15$~dB and effective simulated ratio of $-40$~dB imply a model-dependent power-coupling estimate of approximately $-25$~dB; this offset is not an independent measurement of $\kappa$.}
 
@@ -171,7 +171,7 @@ The AM depth is a field-amplitude fraction; the added peak PM is 0.131174~rad ($
 \begin{figure}[p]
 \centering
 \includegraphics[width=\linewidth]{images/review_experiment_comparison.pdf}
-\caption{\textcolor{red}{\textbf{Fiber-based experiment and simulation comparison.} Unmodulated injection: \textbf{a)} simulated injected-laser intensity RF spectrum and \textbf{b)} measured spectrum in SVA spectrum mode. Modulated injection: \textbf{c)} simulated amplitude response including the additional 0.131174~rad input PM and \textbf{d)} measured response in VNA mode after reference subtraction and optical-power normalization. The simulated fundamental fractional field-amplitude response is normalized to the 0.1 input AM depth. Horizontal axes show RF frequency; vertical axes show optical detuning. Both rows retain the original $-60$ to $-10$~dB color limits, using their respective spectral and transfer-function normalizations.}}
+\caption{\textcolor{red}{\textbf{Fiber-based experiment and simulation comparison.} Unmodulated injection: \textbf{a)} simulated injected-laser intensity RF spectrum and \textbf{b)} measured spectrum in SVA spectrum mode. Modulated injection: \textbf{c)} simulated amplitude response including the additional 0.119786~rad input PM and \textbf{d)} measured response in VNA mode after reference subtraction and optical-power normalization. The simulated fundamental fractional field-amplitude response is normalized to the 0.1 input AM depth. Horizontal axes show RF frequency; vertical axes show optical detuning. Both rows retain the original $-60$ to $-10$~dB color limits, using their respective spectral and transfer-function normalizations.}}
 \label{fig:review-experiment}
 \end{figure}
 \endgroup
