@@ -154,8 +154,31 @@ This figure also provides additional detail for the nonlinear phase-modulation b
 \end{figure}
 
 \clearpage
+\subsection{\textcolor{red}{Comparison with Fiber Measurements}}
+\textcolor{red}{Figure~\ref{fig:review-experiment} compares fiber-based measurements under unmodulated and intensity-modulated injection with the rate-equation model. We extract the injected-laser intensity FFT for the unmodulated case and the fundamental amplitude response for the modulated case. The measurements show corresponding locking-related spectral features and a low-transfer region under modulated injection.}
+
+\textcolor{red}{The Z-cut intensity EOM used experimentally (Thorlabs LNLVL-IM-Z) can introduce additional PM through residual chirp~\cite{ThorlabsLNLVLChirp}. To account for this effect, the modulated simulation uses
+\begin{equation}
+E_{\mathrm{inj}}(t)=A_{\mathrm{inj},0}[1+0.1\sin(2\pi f_{\mathrm{mod}}t)]
+\exp[i\,0.131174\sin(2\pi f_{\mathrm{mod}}t)].
+\end{equation}
+The AM depth is a field-amplitude fraction; the added peak PM is 0.131174~rad ($7.516^\circ$), in phase with the AM drive. This fitted value places the minimum at $-0.22$~GHz detuning for a 4~GHz drive and retains a nearby minimum over 1--5~GHz. It is an effective model parameter, not an independent measurement of the EOM chirp. The resulting map reproduces the negative-detuning low-response region, supporting qualitative agreement with the experiment.}
+
+\textcolor{red}{Simulations use $\alpha=2$ and normalized pump setting 1.944, representing injected-laser output near 0~dBm. The external experimental ratio of $-15$~dB and effective simulated ratio of $-40$~dB imply a model-dependent power-coupling estimate of approximately $-25$~dB; this offset is not an independent measurement of $\kappa$.}
+
+\begingroup
+\renewcommand{\baselinestretch}{1}\selectfont
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{images/review_experiment_comparison.pdf}
+\caption{\textcolor{red}{\textbf{Fiber-based experiment and simulation comparison.} Unmodulated injection: \textbf{a)} simulated injected-laser intensity RF spectrum and \textbf{b)} measured spectrum in SVA spectrum mode. Modulated injection: \textbf{c)} simulated amplitude response including the additional 0.131174~rad input PM and \textbf{d)} measured response in VNA mode after reference subtraction and optical-power normalization. The simulated fundamental fractional field-amplitude response is normalized to the 0.1 input AM depth. Horizontal axes show RF frequency; vertical axes show optical detuning. Both rows retain the original $-60$ to $-10$~dB color limits, using their respective spectral and transfer-function normalizations.}}
+\label{fig:review-experiment}
+\end{figure}
+\endgroup
+
+\clearpage
 \subsection{\textcolor{red}{Complex-Field Readout and Facet Reflection}}
-\textcolor{red}{Supplementary Fig.~\ref{fig:review-reflection} uses the same inputs as main-text Fig.~7: independent generators with seeds 4 and 8 for the remote and local paths, a 20~ns CW settling interval, and 200 active encoded symbols at 10~Gbaud. Each antipodal pair encodes one independent data magnitude, corresponding to a 5~Gbaud data-symbol rate. The zero-order-held drives are filtered by the 20~GHz Gaussian FIR filter and sampled at 64 points per encoded symbol. Both figures display the first 100 active symbols (20--30~ns).}
+\textcolor{red}{Supplementary Fig.~\ref{fig:review-reflection} uses the same inputs as main-text Fig.~6: independent generators with seeds 4 and 8 for the remote and local paths, a 20~ns CW settling interval, and 200 active encoded symbols at 10~Gbaud. Each antipodal pair encodes one independent data magnitude, corresponding to a 5~Gbaud data-symbol rate. The zero-order-held drives are filtered by the 20~GHz Gaussian FIR filter and sampled at 64 points per encoded symbol. Both figures display the first 100 active symbols (20--30~ns).}
 
 \textcolor{red}{The local remodulator acts on the complete complex rate-equation output, including residual modulation. With an additive coherent reflected field, the model is
 \begin{equation}
@@ -172,12 +195,12 @@ Here $R_f=0$ or 0.30 is a power reflectivity; the reflected field coefficient is
 D_j=2\operatorname{Re}\!\left\{x_j\left[E_{\mathrm{injected},j}^{(\mathrm{modulated})}\right]^*\right\},
 \qquad A_n=\frac{1}{64}\sum_{j=1}^{n}D_j,
 \end{equation}
-starting at 20~ns. At each symbol end, this is the cumulative sum of symbol-averaged products. The ideal coherent reference uses the same filtered inputs and $D_j^{\mathrm{ideal}}=2x_jy_j$. No samples are omitted in the field, differential-signal, or accumulation traces. The mapping $(1+\operatorname{Re}E)/2$ in main-text Fig.~7b is for display only and is not used for multiplication. Reflection may increase an error or partly cancel it in an individual trajectory; such cancellation does not establish improved performance.}
+starting at 20~ns. At each symbol end, this is the cumulative sum of symbol-averaged products. The ideal coherent reference uses the same filtered inputs and $D_j^{\mathrm{ideal}}=2x_jy_j$. No samples are omitted in the field, differential-signal, or accumulation traces. The mapping $(1+\operatorname{Re}E)/2$ in main-text Fig.~6b is for display only and is not used for multiplication. Reflection may increase an error or partly cancel it in an individual trajectory; such cancellation does not establish improved performance.}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth,height=0.68\textheight,keepaspectratio]{images/review_reflection.pdf}
-\caption{\textcolor{red}{\textbf{Output reflection under the main-text Fig.~7 conditions.} All panels use $\alpha=0$. \textbf{a--c)} Locally remodulated fields, balanced differential signals, and accumulation over 20--30~ns, respectively, at $-30$, $-40$, and $-50$~dB injection. Contrasting solid curves denote $R_f=0$ and 0.30; dotted curves in (c) are ideal coherent results. Legends in (c) give the values at 30~ns. \textbf{d)} Reflection-induced differential-signal change. \textbf{e)} Pre-remodulation spectra of the complete reflected output (carrier, residual modulation, and reflected input), with the remote spectrum as reference. \textbf{f)} Injected-to-remote spectral ratios from (e). All time-domain traces retain 64 samples per symbol.}}
+\caption{\textcolor{red}{\textbf{Output reflection under the main-text Fig.~6 conditions.} All panels use $\alpha=0$. \textbf{a--c)} Locally remodulated fields, balanced differential signals, and accumulation over 20--30~ns, respectively, at $-30$, $-40$, and $-50$~dB injection. Contrasting solid curves denote $R_f=0$ and 0.30; dotted curves in (c) are ideal coherent results. Legends in (c) give the values at 30~ns. \textbf{d)} Reflection-induced differential-signal change. \textbf{e)} Pre-remodulation spectra of the complete reflected output (carrier, residual modulation, and reflected input), with the remote spectrum as reference. \textbf{f)} Injected-to-remote spectral ratios from (e). All time-domain traces retain 64 samples per symbol.}}
 \label{fig:review-reflection}
 \end{figure}
 
