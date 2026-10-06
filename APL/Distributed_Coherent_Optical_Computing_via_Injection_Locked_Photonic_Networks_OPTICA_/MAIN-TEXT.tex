@@ -143,7 +143,7 @@ R_p-\frac{N}{\tau_n}
 \end{align}
 
 where $\alpha$ is the linewidth enhancement factor, $\tau_n$ is the carrier lifetime, $R_p$ is the pump (bias) term, and $\kappa$ is the injection coupling coefficient.
-\textcolor{red}{The term $-i\Delta\omega E$ describes detuning-induced phase evolution in the remote-carrier rotating frame, where $i^2=-1$ and $\Delta\omega=2\pi(\nu_{\mathrm{remote}}-\nu_0)$ is the angular-frequency detuning in $\mathrm{rad\,s^{-1}}$. Here $\nu_{\mathrm{remote}}$ is the remote-laser optical frequency and $\nu_0$ is the free-running optical frequency of the injected laser without external injection.}  We model the saturated gain as:
+\textcolor{red}{The detuning term $-i\Delta\omega E$ accounts for phase evolution between the remote and injected lasers.}  We model the saturated gain as:
 \begin{align}
 g\!\left(N,|E|^2\right)
 &=\frac{g_0\left(N-N_0\right)}{1+s|E|^2},
@@ -271,7 +271,7 @@ We next sweep the frequency detuning between the remote laser and the injected l
 \begin{equation}
 \Delta\nu = \nu_{\mathrm{remote}} - \textcolor{red}{\nu_0}.
 \end{equation}
-\textcolor{red}{Thus, $\Delta\nu$ is the optical-frequency difference between the remote laser and the free-running injected laser; $\nu_0$ denotes the latter's frequency before optical injection, and $\Delta\nu=\Delta\omega/(2\pi)$.}
+\textcolor{red}{Here $\nu_{\mathrm{remote}}$ is the remote-laser frequency and $\nu_0$ is the free-running injected-laser frequency; $\Delta\nu$ is their frequency detuning and $\Delta\omega=2\pi\Delta\nu$ is the angular-frequency detuning.}
 
 In Fig.~\ref{fig:fig4}a, the injected field is driven with a relatively large modulation depth ($m_a=25\%$ and $m_\phi=25\%$), and the detuning is swept for two representative injection ratios, $-20$~dB and $-50$~dB. For each detuning point, we compute $|H(f_{\text{mod}})|$ over $f_{\text{mod}}\in[0.1,10]\ \text{GHz}$ and visualize the results as detuning-resolved pseudo-color maps with modulation frequency on the horizontal axis and detuning on the vertical axis. This representation effectively stacks transfer functions at different detunings into a single 2D map, which facilitates identifying: (i) a detuning range where the injected laser response remains bounded and repeatable, and (ii) detuning-dependent dynamical features such as RO-related enhancement and increased sensitivity to modulation frequency~\cite{Lau2008JQE_FreqRespEnh_OIL,Lau2008JLT_MasterModulation_OIL_BWEnhancement}.
 
