@@ -67,8 +67,8 @@ This supplementary material provides additional methodological details and suppo
 \subsection{Defining the Locking Range}
 
 After plotting the parameter maps of $\Delta I/\bar{I}$ and $\Delta\phi$, a fairly clear transition can be observed in both cases: one side corresponds to a low-value region with comparatively steady behavior, whereas the other corresponds to a region with increased residual oscillation or phase drift. To better identify the approximate range of this transition, we tested a series of threshold values and found that the boundary in the present simulations lies roughly near 0.1 for the intensity metric and 0.1~rad for the phase metric. Accordingly, we use $\Delta I/\bar{I}\le 0.10$ and $\Delta\phi\le 0.10~\mathrm{rad}$ as empirical operational thresholds to help delineate the boundary of the locking region. For the intensity metric, $\Delta I/\bar{I}\le 0.10$ indicates residual variation below approximately 10\% of the mean intensity, which in this work generally separates approximately steady trajectories from states with more pronounced oscillation. For the phase metric, $\Delta\phi\le 0.10~\mathrm{rad}$ similarly corresponds to a small residual phase excursion over the analysis window, indicating that the field phase remains approximately stationary. These numerical values are therefore not intended as strict theoretical criteria for injection locking, but rather as empirical thresholds used to more clearly identify and outline the locking-region boundary in the present simulations. This distinction is relevant because prior studies have shown that optically injected lasers can exhibit oscillatory states with bounded phase and average-frequency entrainment near Hopf-mediated locking transitions, even when the intensity is no longer strictly steady-state~\cite{Kelleher2012PRE_BoundedPhase,Pausch2012NJP_QDInjectionDynamics}. In that sense, the present thresholds are used to define a conservative practical operating window emphasizing jointly stable amplitude and phase behavior, rather than the broadest possible notion of frequency locking.
-\textcolor{red}{The cutoffs describe the visible dark--bright transition, not a rigorous stability boundary or a fraction of the color-bar range. Reducing both metric cutoffs from 0.10 to 0.01 changes the joint-region area by only 0.23\% for $\alpha=0$ and 0.96\% for $\alpha=5$ (Fig.~\ref{fig:review-threshold}). The same trajectories and finite observation window are used throughout.}
-\textcolor{red}{The archived unmodulated maps used for this cutoff comparison span $-60$ to $0$~dB in 1~dB steps and $-30$ to $30$~GHz in 100~MHz steps. The corresponding rate-equation implementation initializes each point with $E(0)=0$ and $N(0)=N_{\mathrm{th}}=N_0+1/(g_0\tau_s)$, with $R_p=1.15N_{\mathrm{th}}/\tau_n$ and $\kappa_{\mathrm{scale}}=1$. Fourth-order Runge--Kutta integration uses a 0.2~ps step for 90,000 steps (18~ns); the final 3,000 samples (0.6~ns) provide the intensity and unwrapped-phase metrics. The constant injected field is $E_{\mathrm{inj}}=A_{\mathrm{fr}}10^{R_{\mathrm{inj,dB}}/20}$, where $A_{\mathrm{fr}}$ is the model free-running amplitude.}
+\textcolor{red}{The cutoff values apply to the intensity and phase metrics themselves, rather than fractions of the plotted color scale. Their effect on the joint-region boundary is evaluated in Sec.~IV.A.}
+\textcolor{red}{For the unmodulated maps, we sweep injection ratio from $-60$ to $0$~dB in 1~dB steps and detuning from $-30$ to $30$~GHz in 100~MHz steps. Each trajectory starts from $E(0)=0$ and $N(0)=N_{\mathrm{th}}=N_0+1/(g_0\tau_s)$, with $R_p=1.15N_{\mathrm{th}}/\tau_n$ and the coupling factor specified in the main text. We integrate the rate equations using fourth-order Runge--Kutta with a 0.2~ps step for 90,000 steps (18~ns), and evaluate the intensity and unwrapped-phase metrics over the final 3,000 samples (0.6~ns). The constant injection field is $E_{\mathrm{inj}}=A_{\mathrm{fr}}10^{R_{\mathrm{inj,dB}}/20}$, where $A_{\mathrm{fr}}$ is the free-running field amplitude from the same model.}
 
 \subsection{Fourier-Domain Extraction of Modulation Response}
 
@@ -121,7 +121,7 @@ Figure~\ref{fig:supp-locking-194} shows the corresponding results for threshold 
 Figure~\ref{fig:supp-am-pm-time} illustrates the time-domain input and output channels used for extracting the modulation response. The traces are calculated at a representative operating point with $\alpha=5$, $R_{\mathrm{inj}}=-50~\mathrm{dB}$, zero detuning, and $f_{\mathrm{mod}}=2~\mathrm{GHz}$. After a transient interval, the last eight modulation cycles are plotted for modulation depths from 0.60 to 1.00. For AM-driven injection, the input channel is the normalized source-field amplitude modulation, and the output channels are the normalized injected-laser field amplitude and the injected-laser field phase. These channels correspond to the AM$\rightarrow$AM and AM$\rightarrow$PM responses. For PM-driven injection, the input channel is the source-field phase modulation with depth $m_\phi=0.6\pi$ to $1.0\pi$, and the output channels are again the injected-laser field amplitude and phase, corresponding to the PM$\rightarrow$AM and PM$\rightarrow$PM responses. Thus, the figure provides a direct time-domain visualization of the channels used in the Fourier-domain extraction procedure described above.
 
 This figure also provides additional detail for the nonlinear phase-modulation behavior discussed in the main text. In the small-signal regime, increasing modulation depth would primarily scale the response amplitude. However, for PM modulation depths of approximately $0.6\pi$ and above, the PM$\rightarrow$AM and PM$\rightarrow$PM traces show changes in waveform shape and relative amplitude that are not simple proportional rescalings. These time-domain traces therefore help visualize the onset of nonlinear response at large PM depth.
-\textcolor{red}{The dimensionless PM depth is $m_\phi=\Delta\phi/\pi$; thus $m_\phi=0.6$--1.0 corresponds to a phase excursion amplitude $\Delta\phi=0.6\pi$--$1.0\pi$. Waveform distortion alone does not identify a bifurcation.}
+\textcolor{red}{For these traces, the dimensionless PM depth $m_\phi=\Delta\phi/\pi$ ranges from 0.6 to 1.0, corresponding to peak phase excursions of $0.6\pi$--$1.0\pi$.}
 
 \noindent\begin{minipage}{\linewidth}
 \suppfigure{combined_AM_PM_modulation_sweep.png}{fig:supp-am-pm-time}{Time-domain AM and PM modulation responses. The first row shows AM input, AM$\rightarrow$AM, and AM$\rightarrow$PM channels. The second row shows PM input, PM$\rightarrow$AM, and PM$\rightarrow$PM channels. The traces illustrate how the four modulation response channels are defined for Fourier-domain extraction and show the nonlinear evolution of the PM-driven response at large phase-modulation depth.}
@@ -132,54 +132,54 @@ This figure also provides additional detail for the nonlinear phase-modulation b
 
 % REVIEW-ADD-BEGIN supplementary results
 \clearpage
-\section{\textcolor{red}{Additional Numerical and Experimental Validation}}
-\subsection{\textcolor{red}{Sensitivity of the Descriptive Boundary}}
-\textcolor{red}{Figure~\ref{fig:review-threshold} overlays the joint cutoff contours on the archived intensity maps. The contours remain close when both metric thresholds are varied between 0.01 and 0.10, although individual intensity-only contours need not show the same insensitivity. The comparison uses the same stored trajectories and observation window; it is not a bifurcation or observation-time convergence test.}
+\section{\textcolor{red}{Additional Simulations and Experimental Comparison}}
+\subsection{\textcolor{red}{Sensitivity to the Locking Criteria}}
+\textcolor{red}{Figure~\ref{fig:review-threshold} compares the joint intensity and phase contours obtained from the same trajectories and observation window. Reducing both cutoffs from 0.10 to 0.01 changes the enclosed area by 0.23\% for $\alpha=0$ and 0.96\% for $\alpha=5$. This weak dependence supports their use for outlining the low-variation region; it does not establish a bifurcation boundary or convergence with observation time. The intensity-only contours may be more sensitive to the cutoff.}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{images/review_threshold.pdf}
-\caption{\textcolor{red}{\textbf{Empirical cutoff comparison.} Intensity-swing maps for \textbf{a)} $\alpha=0$ and \textbf{b)} $\alpha=5$, with contours of the joint conditions $\Delta I/\bar I\le h$ and $\Delta\phi\le h~\mathrm{rad}$ at $h=0.01$, 0.05, and 0.10. Color represents the original relative intensity swing. The comparison assesses the descriptive contour, rather than proving dynamical stability.}}
+\caption{\textcolor{red}{\textbf{Sensitivity of the joint-region contours to the metric cutoffs.} Relative intensity-swing maps for \textbf{a)} $\alpha=0$ and \textbf{b)} $\alpha=5$. Contours satisfy both $\Delta I/\bar I\le h$ and $\Delta\phi\le h~\mathrm{rad}$ for $h=0.01$, 0.05, and 0.10.}}
 \label{fig:review-threshold}
 \end{figure}
 
 \clearpage
-\subsection{\textcolor{red}{Modulation-Depth Coverage}}
-\textcolor{red}{The Fig.~5 data cover modulation depths from 1\% to 100\% in 1\% increments. Figure~\ref{fig:review-depth} explicitly includes the 1\%, 5\%, and 10\% traces alongside the representative larger depths displayed in the main text. These curves are extracted from the original stored frequency-response arrays.}
+\subsection{\textcolor{red}{Responses at Small Modulation Depths}}
+\textcolor{red}{Figure~\ref{fig:review-depth} supplements main-text Fig.~5 with responses at 1\%, 5\%, and 10\% modulation depth, extracted from the same frequency-response calculations.}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth,height=0.60\textheight,keepaspectratio]{images/review_depth.pdf}
-\caption{\textcolor{red}{\textbf{Expanded depth selection from the Fig.~5 sweeps.} AM$\to$AM and PM$\to$PM fundamental responses at $R_{\mathrm{inj}}=-50$~dB and zero detuning for \textbf{a,b)} $\alpha=0$ and \textbf{c,d)} $\alpha=5$. The displayed depths are 1\%, 5\%, 10\%, 20\%, 40\%, 60\%, 80\%, and 100\%; the underlying grid contains every 1\% increment.}}
+\caption{\textcolor{red}{\textbf{Modulation responses over an extended selection of depths.} AM$\to$AM and PM$\to$PM fundamental responses at $R_{\mathrm{inj}}=-50$~dB and zero detuning for \textbf{a,b)} $\alpha=0$ and \textbf{c,d)} $\alpha=5$. Curves correspond to depths of 1\%, 5\%, 10\%, 20\%, 40\%, 60\%, 80\%, and 100\%.}}
 \label{fig:review-depth}
 \end{figure}
 
 \clearpage
 \subsection{\textcolor{red}{Comparison with Fiber Measurements}}
-\textcolor{red}{Figure~\ref{fig:review-experiment} compares fiber-based measurements under unmodulated and intensity-modulated injection with the rate-equation model. We extract the injected-laser intensity FFT for the unmodulated case and the fundamental amplitude response for the modulated case. The measurements show corresponding locking-related spectral features and a low-transfer region under modulated injection.}
+\textcolor{red}{The unmodulated measurements in Fig.~\ref{fig:review-experiment} exhibit a detuning-dependent locking boundary and residual oscillation features outside the low-response region. Under modulated injection, the measured response is also suppressed within part of the locked region. We compare these features with the simulated intensity spectrum and fundamental amplitude response, respectively.}
 
-\textcolor{red}{The AM generated by the MZM in our experiment is accompanied by PM. We therefore include an additional phase modulation in the injected field:
+\textcolor{red}{To account for PM accompanying the AM produced by the experimental MZM, we use
 \begin{equation}
 E_{\mathrm{inj}}(t)=A_{\mathrm{inj},0}[1+0.1\sin(2\pi f_{\mathrm{mod}}t)]
 \exp[i\,0.10\sin(2\pi f_{\mathrm{mod}}t)].
 \end{equation}
-The AM depth is a field-amplitude fraction; the added peak PM is 0.10~rad, in phase with the AM drive. This effective model parameter is not an independent measurement of the EOM chirp. The simulated minimum lies near $-0.16$~GHz for a 4~GHz drive, reproducing the negative-detuning low-response region seen experimentally.}
+The field-amplitude modulation depth is 0.1, and the peak PM is 0.10~rad, in phase with the AM drive. At a 4~GHz drive frequency, this model places the response minimum near $-0.16$~GHz, consistent with the negative-detuning minimum observed experimentally. The PM amplitude is an effective model parameter rather than an independently measured EOM chirp.}
 
-\textcolor{red}{Simulations use $\alpha=2$ and normalized pump setting 1.944, representing injected-laser output near 0~dBm. The external experimental ratio of $-15$~dB and effective simulated ratio of $-40$~dB imply a model-dependent power-coupling estimate of approximately $-25$~dB; this offset is not an independent measurement of $\kappa$.}
+\textcolor{red}{We use $\alpha=2$ and a normalized pump setting of 1.944 to represent injected-laser output near 0~dBm. Matching the external experimental injection ratio of $-15$~dB to the effective simulated ratio of $-40$~dB gives an estimated power-coupling offset of $-25$~dB. This estimate depends on the model calibration and does not independently determine $\kappa$.}
 
 \begingroup
 \renewcommand{\baselinestretch}{1}\selectfont
 \begin{figure}[p]
 \centering
 \includegraphics[width=\linewidth]{images/review_experiment_comparison.pdf}
-\caption{\textcolor{red}{\textbf{Fiber-based experiment and simulation comparison.} Unmodulated injection: \textbf{a)} simulated injected-laser intensity RF spectrum and \textbf{b)} measured spectrum in SVA spectrum mode. Modulated injection: \textbf{c)} simulated amplitude response including the additional 0.10~rad input PM and \textbf{d)} measured response in VNA mode after reference subtraction and optical-power normalization. The simulated fundamental fractional field-amplitude response is normalized to the 0.1 input AM depth. Horizontal axes show RF frequency; vertical axes show optical detuning. Both rows retain the original $-60$ to $-10$~dB color limits, using their respective spectral and transfer-function normalizations.}}
+\caption{\textcolor{red}{\textbf{Comparison of fiber measurements and simulation.} Unmodulated injection: \textbf{a)} simulated injected-laser intensity spectrum and \textbf{b)} spectrum measured in SVA spectrum mode. Modulated injection: \textbf{c)} simulated amplitude response and \textbf{d)} response measured in VNA mode after reference subtraction and optical-power normalization. The simulated fractional field-amplitude response at the drive frequency is divided by the input AM depth. Horizontal and vertical axes show RF frequency and optical detuning, respectively. All panels use color limits of $-60$ to $-10$~dB, with spectral normalization in the upper row and transfer-function normalization in the lower row.}}
 \label{fig:review-experiment}
 \end{figure}
 \endgroup
 
 \clearpage
 \subsection{\textcolor{red}{Complex-Field Readout and Facet Reflection}}
-\textcolor{red}{Supplementary Fig.~\ref{fig:review-reflection} uses the same inputs as main-text Fig.~6: independent generators with seeds 4 and 8 for the remote and local paths, a 20~ns CW settling interval, and 200 active encoded symbols at 10~Gbaud. Each antipodal pair encodes one independent data magnitude, corresponding to a 5~Gbaud data-symbol rate. The zero-order-held drives are filtered by the 20~GHz Gaussian FIR filter and sampled at 64 points per encoded symbol. Both figures display the first 100 active symbols (20--30~ns).}
+\textcolor{red}{For Fig.~\ref{fig:review-reflection}, we retain the modulation sequence and timing of main-text Fig.~6. Independent random generators with seeds 4 and 8 produce the remote and local inputs, respectively. The zero-order-held waveforms pass through a 20~GHz Gaussian FIR filter and are sampled at 64 points per encoded symbol. The active sequence contains 200 encoded symbols, of which the first 100 are displayed.}
 
-\textcolor{red}{The local remodulator acts on the complete complex rate-equation output, including residual modulation. With an additive coherent reflected field, the model is
+\textcolor{red}{We represent the field incident on the local remodulator as the sum of the rate-equation output and a coherent reflected component:
 \begin{equation}
 \begin{aligned}
 E_{\mathrm{out}}(t)&=E_{\mathrm{injected}}(t)+\sqrt{R_f}E_{\mathrm{inj}}(t),\\
@@ -187,27 +187,27 @@ E_{\mathrm{injected}}^{(\mathrm{modulated})}(t)
 &=\frac{E_{\mathrm{out}}(t)}{\langle E_{\mathrm{injected}}\rangle_{\mathrm{CW}}}\,y(t).
 \end{aligned}
 \end{equation}
-Here $R_f=0$ or 0.30 is a power reflectivity; the reflected field coefficient is therefore $\sqrt{R_f}$. The injection is $E_{\mathrm{inj}}=A_{\mathrm{fr}}10^{R_{\mathrm{inj,dB}}/20}[1+x(t)]$, while the computational data arm is the signed field $E_{\mathrm{remote}}^{(\mathrm{modulated})}=x(t)$. The normalization is the complex mean of the no-reflection field over 10--19~ns, before modulation, and is shared by both reflection cases without fitting. Fields use the same effective output-plane units with unit intracavity-to-output conversion. This additive comparison keeps the laser parameters fixed; device-specific facet coupling and output conversion would require calibration.}
+The power reflectivity is $R_f=0$ or 0.30, giving a reflected-field coefficient $\sqrt{R_f}$. The injected field is $E_{\mathrm{inj}}=A_{\mathrm{fr}}10^{R_{\mathrm{inj,dB}}/20}[1+x(t)]$, and the signed computational data field is $E_{\mathrm{remote}}^{(\mathrm{modulated})}=x(t)$. We normalize both reflection cases by the complex mean of the no-reflection field over 10--19~ns, before data modulation. This fixed calibration is independent of the input data. Both fields are expressed in effective output-plane units with unit intracavity-to-output conversion. The laser parameters are held fixed in this comparison; quantitative predictions for a particular device require calibration of facet coupling and output conversion.}
 
-\textcolor{red}{Balanced detection and sample-resolved accumulation are
+\textcolor{red}{The balanced-detector output and its accumulation are evaluated at every time sample:
 \begin{equation}
 D_j=2\operatorname{Re}\!\left\{x_j\left[E_{\mathrm{injected},j}^{(\mathrm{modulated})}\right]^*\right\},
 \qquad A_n=\frac{1}{64}\sum_{j=1}^{n}D_j,
 \end{equation}
-starting at 20~ns. At each symbol end, this is the cumulative sum of symbol-averaged products. The ideal coherent reference uses the same filtered inputs and $D_j^{\mathrm{ideal}}=2x_jy_j$. No samples are omitted in the field, differential-signal, or accumulation traces. The mapping $(1+\operatorname{Re}E)/2$ in main-text Fig.~6b is for display only and is not used for multiplication. Reflection may increase an error or partly cancel it in an individual trajectory; such cancellation does not establish improved performance.}
+where sampling begins at the onset of data modulation at 20~ns. At symbol boundaries, $A_n$ equals the sum of the preceding symbol-averaged products. The ideal reference is $D_j^{\mathrm{ideal}}=2x_jy_j$, evaluated using the same filtered inputs. The display transformation $(1+\operatorname{Re}E)/2$ in main-text Fig.~6b is not used in the readout calculation. A reflected contribution can reinforce or partly cancel the existing error for a given input; the statistical comparison below assesses its effect across multiple inputs.}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth,height=0.68\textheight,keepaspectratio]{images/review_reflection.pdf}
-\caption{\textcolor{red}{\textbf{Output reflection under the main-text Fig.~6 conditions.} All panels use $\alpha=0$. \textbf{a--c)} Locally remodulated fields, balanced differential signals, and accumulation over 20--30~ns, respectively, at $-30$, $-40$, and $-50$~dB injection. Contrasting solid curves denote $R_f=0$ and 0.30; dotted curves in (c) are ideal coherent results. Legends in (c) give the values at 30~ns. \textbf{d)} Reflection-induced differential-signal change. \textbf{e)} Pre-remodulation spectra of the complete reflected output (carrier, residual modulation, and reflected input), with the remote spectrum as reference. \textbf{f)} Injected-to-remote spectral ratios from (e). All time-domain traces retain 64 samples per symbol.}}
+\caption{\textcolor{red}{\textbf{Effect of output reflection at $\alpha=0$.} \textbf{a--c)} Remodulated injected-laser fields, BPD signals, and accumulated outputs over 20--30~ns at injection ratios of $-30$, $-40$, and $-50$~dB. Contrasting solid curves distinguish $R_f=0$ and 0.30; dotted curves in (c) show the ideal reference, with values at 30~ns listed in the legends. \textbf{d)} Change in BPD output due to reflection. \textbf{e)} Spectra before local remodulation, including the injected-laser carrier, residual modulation, and reflected field, compared with the remote spectrum. \textbf{f)} Injected-to-remote spectral ratios from (e).}}
 \label{fig:review-reflection}
 \end{figure}
 
 \clearpage
 \subsection{\textcolor{red}{Accumulated-Error Statistics over 1000 Inputs}}
-\textcolor{red}{We extend the calculation to $Q=1000$ independent remote/local input pairs, each containing 1024 active encoded symbols. All conditions reuse the same pairs, with distinct remote and local vectors: $\alpha=0,2,5$, injection ratios $-50$, $-40$, and $-30$~dB, and $R_f=0$ or 0.30, at zero detuning. The 100\% field-modulation depth, eight-level magnitudes with antipodal pairing, filtering, sampling, and 20~ns CW preamble are unchanged. Each length $L$ is a prefix of the same trajectory, without restarting the laser or drawing new inputs.}
+\textcolor{red}{We evaluate $Q=1000$ independent remote/local input pairs with 1024 active encoded symbols per vector. The same pairs are used for all combinations of $\alpha=0,2,5$, injection ratios of $-50$, $-40$, and $-30$~dB, and $R_f=0$ or 0.30, at zero detuning. Remote and local vectors are generated independently. The inputs retain the 100\% field-modulation depth, eight-level magnitudes, antipodal encoding, filtering, sampling, and 20~ns CW settling interval used above. Results at length $L$ are evaluated from the first $L$ symbols of each trajectory.}
 
-\textcolor{red}{For input pair $q$, the error and ensemble RMSE after $L$ encoded symbols are
+\textcolor{red}{For input pair $q$, we define the accumulated error and ensemble root-mean-square error as
 \begin{equation}
 \begin{aligned}
 \epsilon_q(L)&=A_{\mathrm{OIL},q}(L)-A_{\mathrm{ideal},q}(L),\\
@@ -215,44 +215,45 @@ A_{\mathrm{OIL},q}(L)&=\frac{1}{64}\sum_{j=1}^{64L}D_{q,j},\qquad
 \mathrm{RMSE}(L)=\sqrt{\frac{1}{Q}\sum_q\epsilon_q(L)^2}.
 \end{aligned}
 \end{equation}
-The ideal reference uses identical filtered waveforms and perfectly coherent clean carriers. These metrics quantify additional OIL/reflection error, excluding filtering error relative to the unfiltered digital dot product.}
+Relative to the ideal readout defined in Sec.~IV.D, these errors isolate the contributions of OIL and reflection. They exclude the difference between filtered-waveform products and the original digital dot product.}
 
-\textcolor{red}{Both panels of Fig.~\ref{fig:review-statistics} use the same final-error percentage:
+\textcolor{red}{The final errors in Fig.~\ref{fig:review-statistics} are expressed as percentages of a common ideal-output RMS:
 \begin{equation}
-S=\sqrt{\frac{1}{Q}\sum_q A_{\mathrm{ideal},q}(1024)^2}=27.7159,
+S=\sqrt{\frac{1}{Q}\sum_q A_{\mathrm{ideal},q}(1024)^2},
 \qquad p_q=100\frac{\epsilon_q(1024)}{S}.
+\label{eq:final-error-normalization}
 \end{equation}
-Thus $S$ is the RMS scale of all 1000 ideal endpoints, not an error. Each signed error is divided by this common scale and multiplied by 100. The same denominator is used for all parameter/reflection conditions, preserving distribution shape and avoiding division by individual near-zero ideal results. A value of $p_q=1\%$ means an error of $0.01S$, not 1\% of that trial's ideal result. Gaussian fits describe the histograms but do not establish Gaussianity.}
+Here $S$ is the RMS of the 1000 ideal accumulated outputs. Using this common denominator for every parameter combination preserves the shape of each error distribution and avoids division by individual ideal outputs near zero. The percentage is therefore relative to the ensemble RMS, rather than each input's ideal result. Gaussian fits characterize the observed distributions without assuming Gaussian statistics.}
 
-\textcolor{red}{Figure~\ref{fig:review-statistics-metrics} also reports
+\textcolor{red}{To compare accuracy across accumulation lengths, Fig.~\ref{fig:review-statistics-metrics} reports the normalized RMSE and Pearson correlation:
 \begin{equation}
 \begin{aligned}
 \mathrm{NRMSE}(L)&=\sqrt{\frac{\sum_q\epsilon_q(L)^2}{\sum_q A_{\mathrm{ideal},q}(L)^2}},\\
 r_{\mathrm P}(L)&=\operatorname{corr}_q[A_{\mathrm{OIL},q}(L),A_{\mathrm{ideal},q}(L)].
 \end{aligned}
 \end{equation}
-NRMSE is displayed as a percentage. Pearson correlation measures covariation across input pairs and must be interpreted together with NRMSE: high correlation alone does not imply small numerical error.}
+NRMSE is plotted as a percentage of the ideal-output RMS at each $L$. Correlation measures linear association across input pairs and is insensitive to an additive offset or a positive overall gain; it therefore complements, but does not replace, the error metric.}
 
-\textcolor{red}{The dependence on $\alpha$ reflects coupled amplitude/phase dynamics and coherent readout. Writing the calibrated no-reflection field as $E_{\mathrm{injected}}/\langle E_{\mathrm{injected}}\rangle_{\mathrm{CW}}=(1+a_\alpha)e^{i\phi_\alpha}$ gives
+\textcolor{red}{The dependence on $\alpha$ follows from amplitude--phase coupling and the phase sensitivity of coherent detection. Writing the calibrated field without reflection as $E_{\mathrm{injected}}/\langle E_{\mathrm{injected}}\rangle_{\mathrm{CW}}=(1+a_\alpha)e^{i\phi_\alpha}$, we obtain
 \begin{equation}
 \delta D_\alpha=2xy[(1+a_\alpha)\cos\phi_\alpha-1]
 \simeq 2xy\left(a_\alpha-\frac{\phi_\alpha^2}{2}\right).
 \end{equation}
-Here $a_\alpha$ and $\phi_\alpha$ are residual field-amplitude and phase fluctuations after CW calibration. Small AM affects the aligned readout to first order, whereas small PM enters to second order. Nonzero $\alpha$ couples amplitude and phase,\cite{Lau2009InjectionTutorial} but does not guarantee lower error. In the sampled conditions, RMSE decreases for nonzero $\alpha$ at $-50$ and $-40$~dB, while this trend reverses at $-30$~dB, especially for $\alpha=5$. The simulations retain the full nonlinear rate equations and exact readout; the small-residual expansion only explains sensitivity.}
+The residual amplitude and phase fluctuations are denoted by $a_\alpha$ and $\phi_\alpha$, respectively. Near the calibrated operating point, amplitude errors enter at first order, while phase errors enter at second order. Amplitude--phase coupling~\cite{Lau2009InjectionTutorial} can therefore change the relative contributions of these terms to the detected error. In the simulated cases, nonzero $\alpha$ reduces RMSE at $-50$ and $-40$~dB, whereas larger errors occur at $-30$~dB, particularly for $\alpha=5$. This expansion describes the small-residual sensitivity; the reported results use the full nonlinear rate equations and exact readout.}
 
 \begingroup
 \renewcommand{\baselinestretch}{1}\selectfont
 \begin{figure}[p]
 \centering
 \includegraphics[width=\linewidth]{images/review_statistics_1000.pdf}
-\caption{\textcolor{red}{\textbf{Final accumulated-error distributions for 1000 inputs at $L=1024$.} \textbf{a)} Histograms of $p_q$ (\%) with descriptive Gaussian fits; fitted $\mu,\sigma$ are in percentage points. Rows: $\alpha=0,2,5$. \textbf{b)} The same normalized errors versus $\alpha$: dots denote individual inputs, violins density, thick bars the 25th--75th percentiles, and white dots medians. Columns: $-50$, $-40$, $-30$~dB. Blue/orange: $R_f=0/0.30$; matching dashed curves in (a): Gaussian fits. Both panels use the common ideal RMS $S=27.7159$.}}
+\caption{\textcolor{red}{\textbf{Final accumulated-error distributions for 1000 input pairs at $L=1024$.} Errors are normalized according to Eq.~\eqref{eq:final-error-normalization}. \textbf{a)} Histograms with Gaussian fits (dashed curves); fitted means $\mu$ and standard deviations $\sigma$ are given in percentage points. Rows correspond to $\alpha=0,2,5$. \textbf{b)} Error distributions versus $\alpha$, with individual inputs shown as dots, density as violins, interquartile ranges as thick bars, and medians as white dots. Columns correspond to injection ratios of $-50$, $-40$, and $-30$~dB. Blue and orange denote $R_f=0$ and 0.30, respectively.}}
 \label{fig:review-statistics}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=\linewidth]{images/review_length_metrics_1000.pdf}
-\caption{\textcolor{red}{\textbf{Accumulation accuracy versus prefix length for 1000 input pairs.} \textbf{a)} RMSE, \textbf{b)} NRMSE (\%), and \textbf{c)} Pearson correlation for $L=1$--1024, using the inputs of Fig.~\ref{fig:review-statistics}. Columns: $-50$, $-40$, $-30$~dB; orange/green/red: $\alpha=0/2/5$; solid/dashed: $R_f=0/0.30$. Subplots have independent vertical ranges. RMSE axes are linear at $-50$ and $-40$~dB and logarithmic at $-30$~dB; NRMSE axes are logarithmic. In (c), logarithmically spaced ticks show $1-r_{\mathrm P}$ under a $1-$ prefix. The reference uses identical filtered inputs and ideal coherent carriers.}}
+\caption{\textcolor{red}{\textbf{Accumulation accuracy versus encoded sequence length.} \textbf{a)} RMSE, \textbf{b)} NRMSE (\%), and \textbf{c)} Pearson correlation over the first $L=1$--1024 symbols of the inputs in Fig.~\ref{fig:review-statistics}. Columns correspond to injection ratios of $-50$, $-40$, and $-30$~dB; orange, green, and red denote $\alpha=0,2,5$, respectively. Solid and dashed curves denote $R_f=0$ and 0.30. Each subplot uses its own vertical range. RMSE is plotted on linear axes at $-50$ and $-40$~dB and a logarithmic axis at $-30$~dB; NRMSE uses logarithmic axes. In (c), tick labels express correlation as $1-r_{\mathrm P}$ beneath a $1-$ prefix, with logarithmic spacing in $1-r_{\mathrm P}$.}}
 \label{fig:review-statistics-metrics}
 \end{figure}
 \endgroup
@@ -262,13 +263,13 @@ Here $a_\alpha$ and $\phi_\alpha$ are residual field-amplitude and phase fluctua
 
 \section{\textcolor{red}{Short-Reach Implementation and Stabilization}}
 \label{sec:short-reach}
-\textcolor{red}{The intended setting is short-reach interconnection within a data center, including chip-to-chip links, using established telecommunications components. This scope reduces the propagation distance and associated impairments but does not assume a noise-free channel. The measures below are a proposed implementation strategy, not a demonstrated closed-loop network.}
+\textcolor{red}{For the short-reach links considered here, practical operation requires control of both the laser operating point and the relative phase and polarization at the detector. The following measures outline a possible implementation.}
 
-\textcolor{red}{Telecom-grade laser specifications alone do not establish sufficient relative-frequency stability for the low-injection operating conditions considered here. The allowable drift depends on the selected detuning and the surrounding region that satisfies both stable locking and acceptable modulation leakage. The static maps therefore guide operating-point selection but do not, by themselves, establish a quantitative frequency-stability requirement.}
+\textcolor{red}{The allowable frequency drift depends on the operating detuning and the range over which locking and acceptable modulation suppression coexist. It cannot be inferred from telecom-grade laser specifications alone. The static maps identify candidate operating regions but do not determine a quantitative drift tolerance.}
 
-\textcolor{red}{A possible implementation combines OIL with slow electronic feedback to the injected-laser current or temperature. Combined OIL--OPLL systems have demonstrated that optical injection can suppress rapid relative-phase fluctuations while electronic feedback compensates slower drift and extends the system hold-in range~\cite{Bordonalli1999OIPLL}. For the present architecture, a carrier-selective monitor or dedicated pilot could provide the feedback reference without using the data-bearing sidebands as the locking reference. A separate phase servo before interference would compensate differential optical-path fluctuations; this readout-phase correction does not replace feedback maintaining the laser within its useful locking region. The control bandwidths and residual errors under data modulation remain to be validated.}
+\textcolor{red}{Combined OIL--OPLL systems use optical injection to suppress rapid relative-phase fluctuations and electronic feedback to compensate slower drift, extending the system hold-in range~\cite{Bordonalli1999OIPLL}. In the proposed implementation, a filtered carrier-selective monitor or dedicated pilot would provide an error signal for PID control of the injected-laser current or temperature. This avoids relying on the data-bearing sidebands as a locking reference. A separate phase servo before interference would compensate differential optical-path fluctuations; it would not replace control of the laser operating point. Loop bandwidths and residual errors under data modulation require experimental validation.}
 
-\textcolor{red}{Polarization-maintaining fiber with aligned launch axes, or active polarization tracking, would preserve coupling and polarization overlap. These measures do not eliminate acoustic or thermal optical-path phase fluctuations; compact routing, environmental isolation, and the phase servo address those disturbances within the available control bandwidth. Chromatic dispersion can be reduced by limiting link length or using compatible 1310~nm lasers and components near the zero-dispersion region of conventional single-mode fiber~\cite{CorningSMF28Ultra}; it is not generally zero, and changing wavelength requires reassessing the laser and link parameters. Short links can avoid in-line amplification when the received-power budget permits, thereby avoiding that source of amplifier noise. Residual laser noise, fluctuations outside the servo bandwidth, and propagation loss still require link-specific characterization. The present deterministic simulations therefore do not establish a maximum transmission distance or complete network-noise tolerance.}
+\textcolor{red}{Polarization-maintaining fiber with aligned launch axes, or active polarization tracking, would preserve injection coupling and polarization overlap at the detector. Acoustic and thermal path-length fluctuations would be addressed through compact routing, environmental isolation, and phase feedback within the control bandwidth. Dispersion can be reduced by shortening the link or using compatible 1310~nm devices near the zero-dispersion wavelength of conventional single-mode fiber~\cite{CorningSMF28Ultra}, with the laser and link parameters recalibrated for that wavelength. Where the power budget permits, omitting in-line amplification also avoids amplifier-added noise. Residual laser noise, loss, and fluctuations beyond the control bandwidth must be characterized for the chosen link; the present calculations do not establish a maximum transmission distance or a complete network-noise budget.}
 
 \clearpage
 \bibliography{refs}
